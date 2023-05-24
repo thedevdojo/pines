@@ -1,5 +1,7 @@
 # Pines UI Library
 
+<img src="cover.jpg" />
+
 This is the main repo for the Open Source <a href="https://devdojo.com/pines" target="_blank">Pines UI Library</a>. This repo is simple to setup and get running on your local if you wish to submit a fix or make some additions to the library.
 
 1. Download the contents of the Github repo and store it in a folder.
