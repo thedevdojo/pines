@@ -1,0 +1,40 @@
+<div x-data="{ 
+        activeAccordion: '', 
+        setActiveAccordion(id) { 
+            this.activeAccordion = (this.activeAccordion == id) ? '' : id 
+        } 
+    }" class="relative w-full max-w-md mx-auto text-sm font-normal">
+    <div x-data="{ id: $id('accordion') }" :class="{ 'text-neutral-900': activeAccordion==id, 'text-neutral-600 hover:text-neutral-900': activeAccordion!=id }" class="cursor-pointer group">
+        <button @click="setActiveAccordion(id)" class="flex items-center justify-between w-full p-4 pb-1 select-none">
+            <span>What is Pines?</span>
+            <svg class="w-5 h-5 duration-300 ease-out" :class="{ '-rotate-[45deg]': activeAccordion==id }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" /></svg>
+        </button>
+        <div x-show="activeAccordion==id" x-collapse x-cloak>
+            <div class="p-4 pt-2 opacity-70">
+                Pines is a UI library built for AlpineJS and TailwindCSS.
+            </div>
+        </div>
+    </div>
+    <div x-data="{ id: $id('accordion') }" :class="{ 'text-neutral-900': activeAccordion==id, 'text-neutral-600 hover:text-neutral-900': activeAccordion!=id }" class="cursor-pointer group">
+        <button @click="setActiveAccordion(id)" class="flex items-center justify-between w-full p-4 pb-1 select-none">
+            <span>How do I install Pines?</span>
+            <svg class="w-5 h-5 duration-300 ease-out" :class="{ '-rotate-[45deg]': activeAccordion==id }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" /></svg>
+        </button>
+        <div x-show="activeAccordion==id" x-collapse x-cloak>
+            <div class="p-4 pt-2 opacity-70">
+                Add AlpineJS and TailwindCSS to your page and then copy and paste any of these elements into your project.
+            </div>
+        </div>
+    </div>
+    <div x-data="{ id: $id('accordion') }" :class="{ 'text-neutral-900': activeAccordion==id, 'text-neutral-600 hover:text-neutral-900': activeAccordion!=id }" class="cursor-pointer group">
+        <button @click="setActiveAccordion(id)" class="flex items-center justify-between w-full p-4 pb-1 select-none">
+            <span>Can I use Pines with other libraries or frameworks?</span>
+            <svg class="w-5 h-5 duration-300 ease-out" :class="{ '-rotate-[45deg]': activeAccordion==id }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" /></svg>
+        </button>
+        <div x-show="activeAccordion==id" x-collapse x-cloak>
+            <div class="p-4 pt-2 opacity-70">
+                Absolutely! Pines works with any other library or framework. Pines works especially well with the TALL stack.
+            </div>
+        </div>
+    </div>
+</div>

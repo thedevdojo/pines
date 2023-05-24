@@ -1,0 +1,267 @@
+<div x-data="{
+        player: null,
+        sources: {
+            mp4: 'https://cdn.devdojo.com/pines/videos/coast.mp4',
+            webm: 'https://cdn.devdojo.com/pines/videos/coast.webm',
+            ogg: 'https://cdn.devdojo.com/pines/videos/coast.ogg'
+        },
+        playing: false,
+        controls: true,
+        muted: false,
+        fullscreen: false,
+        ended: false,
+        mouseleave: false,
+        controlsHideTimeout: null,
+        autoHideControlsDelay: 3000,
+        previewImage: null,
+        poster: null,
+        videoDuration: 0,
+        timeDurationString: '00:00',
+        timeElapsedString: '00:00',
+        showTime: false,
+        volume: 1,
+        volumeBeforeMute: 1,
+        videoPlayerReady: false,
+        videoPlayerReady: false,
+        timelineSeek(e) {
+            time = this.formatTime(Math.round(e.target.value));
+            this.timeElapsedString = `${time.minutes}:${time.seconds}`;
+        },
+        metaDataLoaded(event) {
+            console.log(event.target.duration);
+            console.log('super!');
+            this.videoDuration = event.target.duration;
+            this.$refs.videoProgress.setAttribute('max', this.videoDuration);
+
+            time = this.formatTime(Math.round(this.videoDuration));
+            this.timeDurationString = `${time.minutes}:${time.seconds}`;
+            this.showTime = true;
+            this.videoPlayerReady = true;
+        },
+        togglePlay(e) {
+            if (this.$refs.player.paused || this.$refs.player.ended) {
+                this.playing = true;
+                this.$refs.player.play();
+            } else {
+                this.$refs.player.pause();
+                this.playing = false;
+            }
+        },
+        toggleMute(){
+            this.muted = !this.muted;
+            this.$refs.player.muted = this.muted;
+            if(this.muted){
+                this.volumeBeforeMute = this.volume;
+                this.volume = 0;
+            } else {
+                this.volume = this.volumeBeforeMute;
+            }
+        },
+        timeUpdatedInterval() {
+            if (!this.$refs.videoProgress.getAttribute('max'))
+                this.$refs.videoProgress.setAttribute('max', $refs.player.duration);
+                this.$refs.videoProgress.value = this.$refs.player.currentTime;
+                time = this.formatTime(Math.round(this.$refs.player.currentTime));
+                this.timeElapsedString = `${time.minutes}:${time.seconds}`;
+        },
+        updateVolume(e) {
+            this.volume = e.target.value;
+            this.$refs.player.volume = this.volume;
+            if(this.volume == 0){
+                this.muted = true;
+            }
+
+            if(this.muted && this.volume > 0){
+                this.muted = false;
+            }
+        },
+        timelineClicked(e) {
+            rect = this.$refs.videoProgress.getBoundingClientRect();
+            pos = (e.pageX - rect.left) / this.$refs.videoProgress.offsetWidth;
+            this.$refs.player.currentTime = pos * this.$refs.player.duration;
+        },
+        handleFullscreen() {
+            if (document.fullscreenElement !== null) {
+                // The document is in fullscreen mode
+                document.exitFullscreen();
+            } else {
+                // The document is not in fullscreen mode
+                this.$refs.videoContainer.requestFullscreen();
+            }
+        },
+        mousemoveVideo() {
+            if(this.playing){
+                this.resetControlsTimeout();
+            } else {
+                this.controls=true;
+                clearTimeout(this.controlsHideTimeout);
+            }
+        },
+        videoEnded() {
+            this.ended = true;
+            this.playing = false;
+            this.$refs.player.currentTime = 0;
+        },
+        resetControlsTimeout() {
+            this.controls = true;
+            clearTimeout(this.controlsHideTimeout);
+            let that = this;
+            this.controlsHideTimeout = setTimeout(function(){ 
+                that.controls=false 
+            }, this.autoHideControlsDelay);
+        },
+        formatTime(timeInSeconds) {
+            result = new Date(timeInSeconds * 1000).toISOString().substr(11, 8);
+
+            return {
+                minutes: result.substr(3, 2),
+                seconds: result.substr(6, 2),
+            };
+        }
+    }"
+
+    x-init="
+
+        supportsVideo = document.createElement('video').canPlayType;
+        if (!supportsVideo) {
+            alert('This browser does not support the video element');
+        }
+
+        $refs.player.load();
+        // Hide the default player controls
+        $refs.player.controls = false;
+        
+        $watch('playing', (value) => {
+            if (value) {
+                ended = false;
+                controlsHideTimeout = setTimeout(() => {
+                    controls = false;
+                }, autoHideControlsDelay);
+            } else {
+                clearTimeout(controlsHideTimeout);
+                controls = true;
+            }
+        });
+
+        if (!document?.fullscreenEnabled) {
+            $refs.fullscreenButton.style.display = 'none';
+        }
+
+        document.addEventListener('fullscreenchange', (e) => {
+            fullscreen = !!document.fullscreenElement;
+        });
+
+    "
+    x-ref="videoContainer"
+    @mouseleave="mouseleave=true" 
+    @mousemove="mousemoveVideo"
+    class="relative h-[360px] overflow-hidden rounded-md aspect-video" x-cloak>
+    <video 
+        x-ref="player"
+        @loadedmetadata="metaDataLoaded" 
+        @timeupdate="timeUpdatedInterval" 
+        @ended="videoEnded"
+        preload="metadata" 
+        :poster=""
+        class="relative z-10 object-cover w-full h-full bg-black"
+        crossorigin="anonymous"
+        >
+        <source :src="sources.mp4" type="video/mp4" />
+        <source :src="sources.webm" type="video/webm" />
+        <source :src="sources.ogg" type="video/ogg" />
+    </video>
+    <div x-show="videoPlayerReady" class="absolute inset-0 w-full h-full">
+        <div x-ref="videoBackground" @click="togglePlay()" class="absolute inset-0 z-30 flex items-center justify-center w-full h-full bg-black bg-opacity-0">
+            <div
+                x-show="playing"
+                x-transition:enter="transition ease-out duration-1000"
+                x-transition:enter-start="scale-50 opacity-100"
+                x-transition:enter-end="scale-100 opacity-0"
+                class="flex items-center justify-center w-20 h-20 bg-black rounded-full opacity-0 bg-opacity-20"
+                x-cloak>
+                <svg class="w-10 h-10 translate-x-0.5 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.42737 3.41611C6.46665 2.24586 4.00008 3.67188 4.00007 5.9427L4 18.0572C3.99999 20.329 6.46837 21.7549 8.42907 20.5828L18.5698 14.5207C20.4775 13.3802 20.4766 10.6076 18.568 9.46853L8.42737 3.41611Z" fill="currentColor"></path></svg>
+            </div>
+            <div
+                x-show="!playing && !ended"
+                x-transition:enter="transition ease-out duration-1000"
+                x-transition:enter-start="scale-50 opacity-100"
+                x-transition:enter-end="scale-100 opacity-0"
+                class="flex items-center justify-center w-20 h-20 bg-black rounded-full opacity-0 bg-opacity-20"
+                x-cloak>
+                <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 3C8.55228 3 9 3.44772 9 4L9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20L7 4C7 3.44772 7.44772 3 8 3ZM16 3C16.5523 3 17 3.44772 17 4V20C17 20.5523 16.5523 21 16 21C15.4477 21 15 20.5523 15 20V4C15 3.44772 15.4477 3 16 3Z" fill="currentColor"></path></svg>
+            </div>
+        </div>
+        <div x-show="controls"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="translate-y-full"
+            x-transition:enter-end="translate-y-0"
+            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="translate-y-0"
+            x-transition:leave-end="translate-y-full"
+            class="absolute bottom-0 left-0 z-20 w-full h-1/2 opacity-20 bg-gradient-to-b from-transparent to-black" x-cloak>
+        </div>
+        <div x-show="controls"
+            @click="resetControlsTimeout"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="translate-y-full"
+            x-transition:enter-end="translate-y-0"
+            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="translate-y-0"
+            x-transition:leave-end="translate-y-full"
+            class="absolute bottom-0 left-0 z-40 w-full h-12" x-cloak>
+            <ul class="absolute bottom-0 left-0 z-20 flex items-center w-full text-white">
+                <li class="inline">
+                    <button @click="togglePlay()" class="flex items-center justify-center w-10 h-10 duration-150 ease-out opacity-80 hover:opacity-100" type="button">
+                        <svg x-show="!playing" class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.42737 3.41611C6.46665 2.24586 4.00008 3.67188 4.00007 5.9427L4 18.0572C3.99999 20.329 6.46837 21.7549 8.42907 20.5828L18.5698 14.5207C20.4775 13.3802 20.4766 10.6076 18.568 9.46853L8.42737 3.41611Z" fill="currentColor" x-cloak></path></svg>
+                        <svg x-show="playing" class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 3C8.55228 3 9 3.44772 9 4L9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20L7 4C7 3.44772 7.44772 3 8 3ZM16 3C16.5523 3 17 3.44772 17 4V20C17 20.5523 16.5523 21 16 21C15.4477 21 15 20.5523 15 20V4C15 3.44772 15.4477 3 16 3Z" fill="currentColor" x-cloak></path></svg>
+                    </button>
+                </li>
+                <li class="w-full">
+                    <div class="relative w-full h-2 rounded-full">
+                        <input
+                            x-ref="videoProgress" 
+                            @click="timelineClicked"
+                            @input="timelineSeek(event)"
+                            type="range" min="0" max="100" value="0" step="any" 
+                            class="w-full h-full appearance-none flex items-center cursor-pointer bg-transparent z-30
+                                [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:w-2.5 [&::-webkit-slider-thumb]:h-2.5 [&::-webkit-slider-thumb]:appearance-none
+                                [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:w-2.5 [&::-moz-range-thumb]:h-2.5 [&::-moz-range-thumb]:appearance-none
+                                [&::-ms-thumb]:bg-white [&::-ms-thumb]:rounded-full [&::-ms-thumb]:border-0 [&::-ms-thumb]:w-2.5 [&::-ms-thumb]:h-2.5 [&::-ms-thumb]:appearance-none
+                                [&::-webkit-slider-runnable-track]:bg-white [&::-webkit-slider-runnable-track]:bg-opacity-30 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:overflow-hidden [&::-moz-range-track]:bg-neutral-200 [&::-moz-range-track]:rounded-full [&::-ms-track]:bg-neutral-200 [&::-ms-track]:rounded-full
+                                [&::-moz-range-progress]:bg-gray-900 [&::-moz-range-progress]:rounded-full [&::-ms-fill-lower]:bg-gray-900 [&::-ms-fill-lower]:rounded-full [&::-webkit-slider-thumb]:shadow-[-995px_0px_0px_990px_#101827]
+                        ">
+                    </div>
+                </li>
+                <li x-show="showTime" class="mx-2.5 flex-shrink-0 font-mono text-xs opacity-80 hover:opacity-100">
+                    <time x-ref="timeElapsed" x-text="timeElapsedString">00:00</time>
+                    <span> / </span>
+                    <time x-ref="timeDuration" x-text="timeDurationString">00:00</time>
+                </li>
+                <li class="flex items-center group">
+                    <button @click="toggleMute()" type="button" class="flex items-center justify-center w-6 h-10 duration-150 ease-out opacity-80 hover:opacity-100">
+                        <svg x-show="!muted" class="w-[18px] h-[18px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" x-cloak><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" /><path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" /></svg>
+                        <svg x-show="muted" class="w-[18px] h-[18px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" x-cloak><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" /></svg>
+                    </button>
+                    <div class="relative h-1.5 w-0 mx-0 group-hover:mx-1 rounded-full group-hover:w-12 invisible group-hover:visible w-0 ease-out duration-300">
+                        <input
+                            x-ref="volume"
+                            @input="updateVolume(event)"
+                            type="range" min="0" max="1" :value="volume" step="0.01"
+                            class="w-full h-full appearance-none flex items-center cursor-pointer bg-transparent z-30
+                                [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-0 [&::-webkit-slider-thumb]:w-2 [&::-webkit-slider-thumb]:h-2 [&::-webkit-slider-thumb]:appearance-none
+                                [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:w-2 [&::-moz-range-thumb]:h-2 [&::-moz-range-thumb]:appearance-none
+                                [&::-ms-thumb]:bg-white [&::-ms-thumb]:rounded-full [&::-ms-thumb]:border-0 [&::-ms-thumb]:w-2 [&::-ms-thumb]:h-2 [&::-ms-thumb]:appearance-none
+                                [&::-webkit-slider-runnable-track]:bg-white [&::-webkit-slider-runnable-track]:bg-opacity-30 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:overflow-hidden [&::-moz-range-track]:bg-neutral-200 [&::-moz-range-track]:rounded-full [&::-ms-track]:bg-neutral-200 [&::-ms-track]:rounded-full
+                                [&::-moz-range-progress]:bg-white [&::-moz-range-progress]:bg-opacity-80 [&::-moz-range-progress]:rounded-full [&::-ms-fill-lower]:bg-white [&::-ms-fill-lower]:bg-opacity-80 [&::-ms-fill-lower]:rounded-full [&::-webkit-slider-thumb]:shadow-[-995px_0px_0px_990px_rgba(255,_255,_255,_0.8)]
+                        ">
+                    </div>
+                </li>
+                <li class="ml-auto">
+                    <button x-ref="fullscreenButton" @click="handleFullscreen" class="flex items-center justify-center w-10 h-10 duration-150 ease-out scale-90 opacity-80 hover:opacity-100 hover:scale-100" type="button">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.72685 5C5.77328 5 5 5.77318 5 6.72727V9C5 9.55228 4.55228 10 4 10C3.44772 10 3 9.55228 3 9V6.72727C3 4.6689 4.66842 3 6.72685 3H9C9.55228 3 10 3.44772 10 4C10 4.55228 9.55228 5 9 5H6.72685ZM14 4C14 3.44772 14.4477 3 15 3H17.2727C19.3312 3 21 4.66876 21 6.72727V9C21 9.55228 20.5523 10 20 10C19.4477 10 19 9.55228 19 9V6.72727C19 5.77333 18.2267 5 17.2727 5H15C14.4477 5 14 4.55228 14 4ZM4 14C4.55228 14 5 14.4477 5 15V17.2727C5 18.2268 5.77328 19 6.72685 19H9C9.55228 19 10 19.4477 10 20C10 20.5523 9.55228 21 9 21H6.72685C4.66842 21 3 19.3311 3 17.2727V15C3 14.4477 3.44772 14 4 14ZM20 14C20.5523 14 21 14.4477 21 15V17.2727C21 19.3312 19.3312 21 17.2727 21H15C14.4477 21 14 20.5523 14 20C14 19.4477 14.4477 19 15 19H17.2727C18.2267 19 19 18.2267 19 17.2727V15C19 14.4477 19.4477 14 20 14Z" fill="currentColor"></path></svg>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

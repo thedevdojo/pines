@@ -1,0 +1,63 @@
+<div
+    x-data
+    x-init="
+        function generateTableOfContents() {
+            // Get all the headings in the document
+            const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            
+            // If there are no headings, exit the function
+            if (headings.length === 0) {
+                return;
+            }
+            
+            // Create an unordered list to hold the table of contents
+            const tocList = document.createElement('ul');
+            
+            // Keep track of the previous heading level to determine if we need to create sub-lists
+            let previousLevel = parseInt(headings[0].tagName.substring(1));
+            let currentList = tocList;
+            
+            // Loop through each heading and create a table of contents entry
+            for (let i = 0; i < headings.length; i++) {
+                const heading = headings[i];
+                const level = parseInt(heading.tagName.substring(1));
+                
+                // Create a link to the heading
+                const link = document.createElement('a');
+                link.href = '#' + heading.id;
+                link.textContent = heading.textContent;
+                
+                // Create a list item to hold the link
+                const listItem = document.createElement('li');
+                listItem.appendChild(link);
+                
+                // Determine if we need to create a sub-list
+                if (level > previousLevel) {
+                const sublist = document.createElement('ul');
+                currentList.lastChild.appendChild(sublist);
+                currentList = sublist;
+                } else if (level < previousLevel) {
+                currentList = currentList.parentNode.parentNode;
+                }
+                
+                currentList.appendChild(listItem);
+                previousLevel = level;
+            }
+            
+            // Add the table of contents to the page
+            const tocContainer = document.querySelector('#toc');
+            tocContainer.appendChild(tocList);
+        }
+    "    
+class="relative flex flex-col">
+
+    <div class="relative">
+        <p class="mb-2 font-semibold tracking-tight">Table of Contents</p>
+    
+        <ul>
+            <li class="text-sm transition-colors hover:text-text-neutral-700 text-neutral-500"><a href="#_">asdf</a></li>
+            <li class="text-sm transition-colors hover:text-text-neutral-700 text-neutral-500"><a href="#_">asdf</a></li>
+        </ul>
+    </div>
+
+</div>

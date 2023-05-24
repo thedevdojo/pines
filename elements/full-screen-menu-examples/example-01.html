@@ -1,0 +1,63 @@
+<div x-data="{ previewFullScreenMenu: false }">
+    <button @click="previewFullScreenMenu=true" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Preview</button>
+    <template x-teleport="body">
+
+        <div x-show="previewFullScreenMenu"  class="fixed inset-0 z-[99] w-screen h-screen">
+            <!-- Blur Overlay -->
+            <div class="fixed inset-0 z-10 w-screen h-screen bg-white bg-opacity-70 backdrop-blur-sm"></div>
+            <button @click="previewFullScreenMenu=false" class="fixed top-0 right-0 z-30 inline-flex items-center justify-center h-10 px-4 py-2 mt-3 mr-3 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Close Fullscreen Menu</button>
+            
+            <!-- Fullscreen Menu -->
+            <div x-data="{ fullscreenMenu: false }" @keydown.escape.window="fullscreenMenu=false" class="fixed inset-0 z-20 w-screen h-screen overflow-hidden" x-cloak>
+                <button class="absolute top-0 left-0 z-30 flex items-center justify-center w-12 h-12 mt-4 ml-4 transition duration-300 transform -translate-y-px bg-black rounded-full cursor-pointer group" @click="fullscreenMenu=!fullscreenMenu">
+                    <div :class="{ '-rotate-180 -translate-y-px' : fullscreenMenu }" class="w-6 h-auto transition duration-500 ease-out transform cursor-pointer">
+                        <div :class="{ 'rotate-45 duration-300' : fullscreenMenu, 'group-hover:-translate-y-[1px] duration-500' : !fullscreenMenu }" class="h-[2px] bg-white w-full rounded-full transform transition ease-out"></div>
+                        <div :class="{ 'hidden' : fullscreenMenu }" class="h-[2px] bg-white w-full my-[5px]"></div>
+                        <div :class="{ '-rotate-45 duration-300 -translate-y-0.5' : fullscreenMenu, 'group-hover:translate-y-[1px] duration-300' : !fullscreenMenu }" class="h-[2px] bg-white w-full rounded-full transform transition ease-out duration-500"></div>
+                    </div>
+                </button>
+                <div :class="{ 'opacity-0 invisible' : !fullscreenMenu, 'opacity-100' : fullscreenMenu }" class="fixed inset-0 z-10 w-screen h-screen transition duration-300 transform bg-white ease"></div>
+                <nav :class="{ 'invisible' : !fullscreenMenu }" class="fixed inset-0 z-20 flex flex-col items-start justify-start w-screen h-full py-24 pl-5 space-y-5 text-5xl font-bold uppercase transition duration-300 text-neutral-900 ease">
+                    <a href="#_"
+                        x-show="fullscreenMenu"
+                        x-transition:enter="transition delay-0 ease-out duration-500" 
+                        x-transition:enter-start="-translate-x-full opacity-0" 
+                        x-transition:enter-end="translate-x-cloak-0 opacity-100" 
+                        :class="{ '-translate-x-full' : !fullscreenMenu }" class="relative inline-block w-auto h-auto font-extrabold text-left cursor-pointer hover:text-black group">
+                        <span>Home</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-1 duration-300 ease-out bg-black group-hover:w-full"></span>
+                    </a>
+                    <a href="#_"
+                        x-show="fullscreenMenu"
+                        x-transition:enter="transition delay-[150ms] ease-out duration-500" 
+                        x-transition:enter-start="-translate-x-full opacity-0" 
+                        x-transition:enter-end="translate-x-cloak-0 opacity-100" 
+                        :class="{ '-translate-x-full' : !fullscreenMenu }" class="relative inline-block w-auto h-auto font-extrabold text-left cursor-pointer hover:text-black group">
+                        <span>Features</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-1 duration-300 ease-out bg-black group-hover:w-full"></span>
+                    </a>
+                    <a href="#_"
+                        x-show="fullscreenMenu"
+                        x-transition:enter="transition delay-[300ms] ease-out duration-500" 
+                        x-transition:enter-start="-translate-x-full opacity-0" 
+                        x-transition:enter-end="translate-x-cloak-0 opacity-100" 
+                        :class="{ '-translate-x-full' : !fullscreenMenu }" class="relative inline-block w-auto h-auto font-extrabold text-left cursor-pointer hover:text-black group">
+                        <span>Pricing</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-1 duration-300 ease-out bg-black group-hover:w-full"></span>
+                    </a>
+                    <a href="#_"
+                        x-show="fullscreenMenu"
+                        x-transition:enter="transition delay-[450ms] ease-out duration-500" 
+                        x-transition:enter-start="-translate-x-full opacity-0" 
+                        x-transition:enter-end="translate-x-cloak-0 opacity-100" 
+                        :class="{ '-translate-x-full' : !fullscreenMenu }" class="relative inline-block w-auto h-auto font-extrabold text-left cursor-pointer hover:text-black group">
+                        <span>About</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-1 duration-300 ease-out bg-black group-hover:w-full"></span>
+                    </a>
+                </nav>
+            </div>
+            <!-- End Fullscreen Menu -->
+
+        </div>
+    </template>
+</div>

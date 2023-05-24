@@ -1,0 +1,21 @@
+{
+    "data" : {
+        "datePickerOpen" : "If the date picker is open (true or false)",
+        "datePickerValue" : "The default date value. If left empty the current date will be used",
+        "datePickerFormat" : "You can choose a few different formats to display the date. See all available formats in the datePickerFormatDate() method.",
+        "datePickerMonth" : "Numerical value of the current month (0-11)",
+        "datePickerYear" : "Numerical value of the current year",
+        "datePickerDay" : "Numerical value of the current day",
+        "datePickerDaysInMonth" : "Array containing the number of days in the selected month",
+        "datePickerBlankDaysInMonth" : "Array containing the number of blank days before the first day of the month",
+        "datePickerMonthNames" : "Array containing the names of the months",
+        "datePickerDays" : "Array containing the names of the days",
+        "datePickerDayClicked(day)" : "When a day is clicked on the datepicker set the new date value",
+        "datePickerPreviousMonth()" : "Go to the previous month",
+        "datePickerNextMonth()" : "Go to the next month",
+        "datePickerIsSelectedDate(day)" : "Check if the day is the selected date",
+        "datePickerIsToday(day)" : "Check if the day is today",
+        "datePickerCalculateDays()" : "Calculate the number of days in the month",
+        "datePickerFormatDate(date)" : "Format the date to the selected format"
+    }
+}

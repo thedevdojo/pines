@@ -1,0 +1,36 @@
+<div class="not-prose">
+    <h2 class="pt-0 mb-2 text-3xl font-bold tracking-tight select-none not-prose custom-font">How To Use</h2>
+</div>
+<p class="text-gray-500">Pines, is super easy to use. If your application uses AlpineJS and TailwindCSS, you can copy and paste an element into your page an it will work flawlessly. If you want to test an element on a single HTML page, you can copy/paste this snippet below into any `.html` file:</p>
+
+<pre class="block w-full overflow-scroll text-sm border rounded-md hljs html border-neutral-200"><code class="hljs html">&#x3C;!DOCTYPE html&#x3E;
+&#x3C;html lang=&#x22;en&#x22;&#x3E;
+&#x3C;head&#x3E;
+    &#x3C;meta charset=&#x22;UTF-8&#x22;&#x3E;
+    &#x3C;meta http-equiv=&#x22;X-UA-Compatible&#x22; content=&#x22;IE=edge&#x22;&#x3E;
+    &#x3C;meta name=&#x22;viewport&#x22; content=&#x22;width=device-width, initial-scale=1.0&#x22;&#x3E;
+    &#x3C;title&#x3E;Pines UI&#x3C;/title&#x3E;
+    &#x3C;style&#x3E;[x-cloak]{display:none}&#x3C;/style&#x3E;
+    &#x3C;!-- Include the Alpine library on your page --&#x3E;
+    &#x3C;script src=&#x22;//unpkg.com/alpinejs&#x22; defer&#x3E;&#x3C;/script&#x3E;
+    &#x3C;!-- Include the TailwindCSS library on your page --&#x3E;
+    &#x3C;script src=&#x22;https://cdn.tailwindcss.com&#x22;&#x3E;&#x3C;/script&#x3E;
+&#x3C;/head&#x3E;
+&#x3C;body class=&#x22;flex items-start justify-center h-full bg-gray-50&#x22; style=&#x22;display:none;&#x22;&#x3E;
+    &#x3C;div class=&#x22;flex items-center justify-center w-full max-w-full&#x22;&#x3E;
+        &#x3C;!-- Element Here --&#x3E;
+    &#x3C;/div&#x3E;
+&#x3C;/body&#x3E;
+&#x3C;/html&#x3E;</code></pre>
+
+<div class="relative w-full rounded-lg border border-transparent p-4 [&amp;>svg]:absolute [&amp;>svg]:text-foreground [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg+div]:translate-y-[-3px] [&amp;:has(svg)]:pl-11 bg-blue-600 text-white">
+    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.28 5.22a.75.75 0 010 1.06L2.56 10l3.72 3.72a.75.75 0 01-1.06 1.06L.97 10.53a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 0zm7.44 0a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L17.44 10l-3.72-3.72a.75.75 0 010-1.06zM11.377 2.011a.75.75 0 01.612.867l-2.5 14.5a.75.75 0 01-1.478-.255l2.5-14.5a.75.75 0 01.866-.612z" clip-rule="evenodd" /></svg>
+    <h5 class="mb-1 font-medium leading-none tracking-tight">Paste in your element</h5>
+    <div class="text-sm [&amp;_p]:leading-relaxed opacity-80">Replace the `&lt;!-- Element Here --&gt;` line with the element snippet and you're ready to rock and roll.</div>
+</div>
+
+<hr>
+
+<h3>The Pines Playground</h3>
+
+<p class="text-gray-500">You may also open up the <button class="text-blue-600 underline" onclick="window.dispatchEvent(new CustomEvent('open-playground', { detail: {}}));">Pines Playground</button> and edit any element or design your own. Keep in mind that the data entered into the playground will not be saved, so if you leave the page you may lose any changes. However, it may be the easiest way to make a few modifications to an element or create your own.</p>

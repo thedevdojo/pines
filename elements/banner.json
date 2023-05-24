@@ -1,0 +1,10 @@
+{
+    "data" : {
+        "bannerVisible" : "If the banner is visible (default: false)",
+        "bannerVisibleAfter" : "On initialize the banner will be visible after this many milliseconds"
+    },
+    "additional" : {
+        "description" : "<p>You can remove the <strong>setTimeout</strong> method in the <strong>init()</strong> method if you wish to toggle visibility another way.</p>",
+        "note" : "Inside the click function on the close button, you may want to remove the setTimeout to prevent the banner from re-showing."
+    }
+}

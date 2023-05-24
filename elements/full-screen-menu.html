@@ -1,0 +1,38 @@
+<div x-data="{ previewFullScreenMenu: false }">
+    <button @click="previewFullScreenMenu=true" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Preview</button>
+    <template x-teleport="body">
+
+        <div x-show="previewFullScreenMenu"  class="fixed inset-0 z-[99] w-screen h-screen">
+            <!-- Blur Overlay -->
+            <div class="fixed inset-0 z-10 w-screen h-screen bg-white bg-opacity-70 backdrop-blur-sm"></div>
+            <button @click="previewFullScreenMenu=false" class="fixed top-0 right-0 z-30 inline-flex items-center justify-center h-10 px-4 py-2 mt-3 mr-3 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Close Fullscreen Menu</button>
+            
+            <!-- Fullscreen Menu -->
+            <div x-data="{ fullscreenMenu: false }" @keydown.escape.window="fullscreenMenu=false" class="fixed inset-0 z-20 w-screen h-screen overflow-hidden" x-cloak>
+                <div :class="{ 'border-neutral-200/70' : !fullscreenMenu, 'border-transparent' : fullscreenMenu }" class="fixed z-20 flex flex-col items-center justify-center w-16 h-full py-5 text-black transform bg-white border-r">      
+                    <div class="relative w-6 h-5 transition duration-300 transform cursor-pointer group" @click="fullscreenMenu=!fullscreenMenu">
+                    <div :class="{ 'rotate-45 translate-y-[6px] duration-300' : fullscreenMenu, 'group-hover:-translate-y-0.5 duration-300' : !fullscreenMenu }" class="h-[3px] bg-black w-full transform transition ease-out"></div>
+                    <div :class="{ 'hidden' : fullscreenMenu }" class="h-[3px] bg-black w-full my-1"></div>
+                    <div :class="{ '-rotate-45 translate-y-[3px] duration-300' : fullscreenMenu, 'group-hover:translate-y-0.5 duration-300' : !fullscreenMenu }" class="h-[3px] bg-black w-full transform transition ease-out"></div>
+                    </div>
+                </div>
+                <div :class="{ '-translate-x-full' : !fullscreenMenu }" class="fixed inset-0 z-10 z-50 flex flex-col items-start justify-center w-screen h-screen py-10 pl-16 space-y-5 font-bold transition duration-300 transform bg-white ease">
+                    <svg onclick="window.location='#_'" preserveAspectRatio="xMinYMin meet" viewBox="0 0 56 18" class="w-full h-full pl-10 text-left uppercase cursor-pointer hover:text-blue-600">
+                        <text x="0" y="15" class="block w-full" text-anchor="start" fill="currentColor">Home</text>
+                    </svg>
+                    <svg onclick="window.location='#_'" preserveAspectRatio="xMinYMin meet" viewBox="0 0 56 18" class="w-full h-full pl-10 text-left uppercase cursor-pointer hover:text-blue-600">
+                        <text x="0" y="15" class="block w-full" fill="currentColor">Features</text>
+                    </svg>
+                    <svg onclick="window.location='#_'" preserveAspectRatio="xMinYMin meet" viewBox="0 0 56 18" class="w-full h-full pl-10 text-left uppercase cursor-pointer hover:text-blue-600">
+                        <text x="0" y="15" class="block w-full" fill="currentColor">Pricing</text>
+                    </svg>
+                    <svg onclick="window.location='#_'" preserveAspectRatio="xMinYMin meet" viewBox="0 0 56 18" class="w-full h-full pl-10 text-left uppercase cursor-pointer hover:text-blue-600">
+                        <text x="0" y="15" class="block w-full" fill="currentColor">About</text>
+                    </svg>
+                </div>
+            </div>
+            <!-- End Fullscreen Menu -->
+
+        </div>
+    </template>
+</div>

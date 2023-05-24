@@ -1,0 +1,13 @@
+<div x-data="{
+    repositionTabMarker(el){
+        this.$refs.marker.style.width=el.offsetWidth + 'px';
+        this.$refs.marker.style.height=el.offsetHeight + 'px';
+        this.$refs.marker.style.left=el.offsetLeft + 'px';
+    }
+}" x-init="repositionTabMarker($el.firstElementChild);" class="relative inline-grid items-center justify-center w-auto h-10 grid-cols-2 p-1 text-gray-500 bg-gray-100 rounded-lg select-none">
+<button type="button" @click="repositionTabMarker($el); preview=true;" class="relative z-20 inline-flex items-center justify-center h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap ring-offset-background">Preview</button>
+<button type="button" @click="repositionTabMarker($el); preview=false" class="relative z-20 inline-flex items-center justify-center h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap ring-offset-background">Code</button>
+<div x-ref="marker" class="absolute left-0 z-10 w-1/2 h-full duration-300 ease-out" style="width: 76px; height: 32px; left: 4px;">
+    <div class="w-full h-full bg-white rounded-md shadow-sm"></div>
+</div>
+</div>

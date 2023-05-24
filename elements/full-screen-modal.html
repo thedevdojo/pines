@@ -1,0 +1,12 @@
+<div x-data="{ fullscreenMenu: false }" class="relative inset-0 w-full h-full">
+    <div class="absolute top-0 left-0 w-full h-full">
+        <button class="absolute top-0 left-0 z-30 w-6 h-5 mt-5 ml-5 transition duration-300 transform cursor-pointer group" @click="fullscreenMenu=!fullscreenMenu">
+            <div :class="{ 'rotate-45 translate-y-[2px] duration-300' : fullscreenMenu, 'group-hover:-translate-y-[1px] duration-300' : !fullscreenMenu }" class="h-[2px] bg-black w-full rounded-full transform transition ease-out"></div>
+            <div :class="{ 'hidden' : fullscreenMenu }" class="h-[2px] bg-black w-full my-[5px]"></div>
+            <div :class="{ '-rotate-45 duration-300' : fullscreenMenu, 'group-hover:translate-y-[1px] duration-300' : !fullscreenMenu }" class="h-[2px] bg-black w-full rounded-full transform transition ease-out"></div>
+        </button>
+        <div x-show="fullscreenMenu" class="absolute inset-0 z-20 flex items-center justify-center w-screen h-screen text-sm bg-gray-50 text-neutral-500" x-cloak>
+            Add your menu here
+        </div>
+    </div>
+</div>

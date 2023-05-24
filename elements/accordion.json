@@ -1,0 +1,10 @@
+{
+    "data" : {
+        "activeAccordion" : "This will contain the string of the active accordion item (example: 'accordion-1')",
+        "setActiveAccordion(id)" : "This will set the active accordion with the associated id"
+    },
+    "alert_notification" : {
+        "title" : "Not seeing the animation?",
+        "description" : "We are using the <a href=\"https://alpinejs.dev/plugins/collapse\" target=\"_blank\" class=\"underline\">AlpineJS collapse plug-in</a> in this example. Simply, include it in your project and you will see the collapse plug-in in action."
+    }
+}

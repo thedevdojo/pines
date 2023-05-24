@@ -1,0 +1,37 @@
+<div x-data="{ fullscreenMenu: false }" class="relative inset-0 w-full h-full">
+    <div class="absolute top-0 left-0 w-full h-full">
+        <button class="absolute top-0 z-30 w-6 h-5 mt-5 mr-5 transition duration-300 transform -translate-x-1/2 cursor-pointer left-1/2 group" @click="fullscreenMenu=!fullscreenMenu">
+            <div :class="{ 'rotate-45 translate-y-[2px] duration-300' : fullscreenMenu, 'group-hover:-translate-y-[1px] duration-300' : !fullscreenMenu }" class="h-[2px] bg-black w-full rounded-full transform transition ease-out"></div>
+            <div :class="{ 'hidden' : fullscreenMenu }" class="h-[2px] bg-black w-full my-[5px]"></div>
+            <div :class="{ '-rotate-45 duration-300' : fullscreenMenu, 'group-hover:translate-y-[1px] duration-300' : !fullscreenMenu }" class="h-[2px] bg-black w-full rounded-full transform transition ease-out"></div>
+        </button>
+        <div x-show="fullscreenMenu" class="absolute inset-0 z-20 flex items-center justify-center w-screen h-screen bg-gray-50 text-neutral-500" x-cloak>
+            <ul class="space-y-2 text-center">
+                <li>
+                    <a href="#_" class="relative inline-flex font-medium duration-300 ease-out hover:text-neutral-800 group">
+                        <span>Home</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 duration-300 ease-out group-hover:w-full bg-neutral-800"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#_" class="relative inline-flex font-medium duration-300 ease-out hover:text-neutral-800 group">
+                        <span>Features</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 duration-300 ease-out group-hover:w-full bg-neutral-800"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#_" class="relative inline-flex font-medium duration-300 ease-out hover:text-neutral-800 group">
+                        <span>Pricing</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 duration-300 ease-out group-hover:w-full bg-neutral-800"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#_" class="relative inline-flex font-medium duration-300 ease-out hover:text-neutral-800 group">
+                        <span>About</span>
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 duration-300 ease-out group-hover:w-full bg-neutral-800"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

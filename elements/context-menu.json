@@ -1,0 +1,8 @@
+{
+    "data" : {
+        "contextMenuOpen" : "If the context menu is open (default: false)",
+        "contextMenuToggle (event)" : "This function will toggle the context menu to show or hide.",
+        "calculateContextMenuPosition (clickEvent)" : "This function will calculate the position of the context menu based on the clickEvent position.",
+        "calculateSubMenuPosition (clickEvent)" : "This function will calculate the position of the sub menu and adjust it if it is off screen."
+    }
+}
