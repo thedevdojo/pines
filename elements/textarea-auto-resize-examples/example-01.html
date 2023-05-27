@@ -1,0 +1,15 @@
+<div class="relative w-full max-w-xs mx-auto">
+    <textarea x-data="{ 
+            resize () { 
+                $el.style.height = '0px'; 
+                $el.style.height = $el.scrollHeight + 'px' 
+            } 
+        }"
+        x-init="resize()"
+        @input="resize()"
+        type="text" 
+        placeholder="Type your message here. I will resize based on the height content." 
+        class="flex relative z-20 peer w-full h-auto min-h-[80px] px-3 py-2 text-sm bg-white border-2 border-neutral-900 placeholder:text-neutral-500 focus:text-neutral-800 focus:border-neutral-900 focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50"
+    ></textarea>
+    <div class="absolute inset-0 z-10 w-full h-full -m-1 duration-300 ease-out translate-x-2 translate-y-2 bg-black peer-focus:m-0 peer-focus:translate-x-0 peer-focus:translate-y-0"></div>
+</div>

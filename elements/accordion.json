@@ -3,6 +3,8 @@
         "activeAccordion" : "This will contain the string of the active accordion item (example: 'accordion-1')",
         "setActiveAccordion(id)" : "This will set the active accordion with the associated id"
     },
+    "additional_info" : "",
+    "explanation" : "The accordion UI element on a website is like a digital filing cabinet, revealing and concealing sections of information with a click, granting users the power to navigate the web's vastness while maintaining order and harmony.",
     "alert_notification" : {
         "title" : "Not seeing the animation?",
         "description" : "We are using the <a href=\"https://alpinejs.dev/plugins/collapse\" target=\"_blank\" class=\"underline\">AlpineJS collapse plug-in</a> in this example. Simply, include it in your project and you will see the collapse plug-in in action."

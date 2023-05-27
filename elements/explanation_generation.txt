@@ -1,0 +1,2 @@
+The ChatGPT prompt that is used to get the explanation for the UI element is:
+Can you give a concise paragraph explanation of what an [element] UI element is and how it's used on a website in the tone of Mark Twain.

@@ -1,0 +1,6 @@
+{
+    "data" : {
+        "progress" : "The progress percentage of the progress bar",
+        "progressInterval" : "The interval of the progress bar, will be cleared after reaching 100%"
+    }
+}

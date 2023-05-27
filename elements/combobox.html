@@ -1,0 +1,94 @@
+<div x-data="{
+    selectedItem: '',
+    selectableItems: [
+        {
+            title: 'Milk',
+            value: 'milk',
+            disabled: false
+        },
+        {
+            title: 'Eggs',
+            value: 'eggs',
+            disabled: false
+        },
+        {
+            title: 'Cheese',
+            value: 'cheese',
+            disabled: false
+        },
+        {
+            title: 'Bread',
+            value: 'bread',
+            disabled: false
+        },
+        {
+            title: 'Apples',
+            value: 'apples',
+            disabled: false
+        },
+        {
+            title: 'Bananas',
+            value: 'bananas',
+            disabled: false
+        },
+        {
+            title: 'Yogurt',
+            value: 'yogurt',
+            disabled: false
+        },
+        {
+            title: 'Sugar',
+            value: 'sugar',
+            disabled: false
+        },
+        {
+            title: 'Salt',
+            value: 'salt',
+            disabled: false
+        },
+        {
+            title: 'Coffee',
+            value: 'coffee',
+            disabled: false
+        },
+        {
+            title: 'Tea',
+            value: 'tea',
+            disabled: false
+        }
+    ],
+    selectableItemsOpen: false,
+}"
+class="relative w-64">
+
+<button @click="selectableItemsOpen=!selectableItemsOpen" class="relative min-h-[38px] flex items-center justify-between w-full py-2 pl-3 pr-10 text-left bg-white border rounded-md shadow-sm cursor-default border-neutral-200/70 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+    <span x-text="selectedItem ? selectedItem.title : 'Select Item'" class="truncate"></span>
+    <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-gray-400"><path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd"></path></svg>
+    </span>
+</button>
+
+<ul x-show="selectableItemsOpen"
+    @click.away="selectableItemsOpen = false"
+    x-transition:enter="transition ease-out duration-50"
+    x-transition:enter-start="opacity-0 -translate-y-1"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-out duration-50"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0 -translate-y-1"
+    class="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-md max-h-56 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+    x-cloak>
+
+    <template x-for="item in selectableItems" :key="item.value">
+        <li 
+            @click="selectedItem=item; selectableItemsOpen=false"
+            :disabled="item-disabled"
+            class="relative flex items-center h-full py-2 pl-8 text-gray-700 cursor-default select-none hover:bg-neutral-100 hover:text-gray-900">
+            <svg x-show="selectedItem.value==item.value" class="absolute left-0 w-4 h-4 ml-2 stroke-current text-neutral-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span class="block font-medium truncate" x-text="item.title"></span>
+        </li>
+    </template>
+
+</ul>
+
+</div>
