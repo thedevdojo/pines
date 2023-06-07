@@ -110,6 +110,7 @@
         "slide-over" : "w-full p-10 box-border flex items-center justify-center",
         "switch" : "w-full p-10 box-border flex items-center justify-center",
         "tabs" : "w-full p-10 box-border flex items-center justify-center",
+        "table" : "w-full",
         "textarea" : "w-full py-10 px-48 box-border flex items-center justify-center",
         "textarea-auto-resize" : "w-full py-10 px-48 box-border flex items-center justify-center",
         "text-animation" : "w-full py-10 box-border flex items-center justify-center",

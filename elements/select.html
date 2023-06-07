@@ -59,6 +59,10 @@
         ],
         selectableItemActive: null,
         selectId: $id('select'),
+        selectKeydownValue: '',
+        selectKeydownClearTimeout: null,
+        selectKeydownTimeout: 1000,
+        selectDropdownPosition: 'bottom',
         selectableItemIsActive(item) {
             return this.selectableItemActive && this.selectableItemActive.value==item.value;
         },
@@ -87,28 +91,85 @@
                     this.$refs.selectableItemsList.scrollTop=0;
                 }
             }
+
+            // 224px;
+        },
+        selectKeydown(event){
+            if (event.keyCode >= 65 && event.keyCode <= 90) {
+                
+                this.selectKeydownValue += event.key;
+                selectedItemBestMatch = this.selectItemsFindBestMath();
+                if(selectedItemBestMatch){
+                    if(this.selectableItemsOpen){
+                        this.selectableItemActive = selectedItemBestMatch;
+                        this.selectScrollToActiveItem();
+                    } else {
+                        this.selectedItem = this.selectableItemActive = selectedItemBestMatch;
+                    }
+                }
+                
+                console.log(this.selectItemsFindBestMath());
+                if(this.selectKeydownValue != ''){
+                    clearTimeout(this.selectKeydownClearTimeout);
+                    this.selectKeydownClearTimeout = setTimeout(() => {
+                        this.selectKeydownValue = '';
+                    }, this.selectKeydownTimeout);
+                }
+            }
+        },
+        selectItemsFindBestMath(){
+            typedValue = this.selectKeydownValue.toLowerCase();
+            var bestMatch = null;
+            var bestMatchIndex = -1;
+            for (var i = 0; i < this.selectableItems.length; i++) {
+                var title = this.selectableItems[i].title.toLowerCase();
+                var index = title.indexOf(typedValue);
+                if (index > -1 && (bestMatchIndex == -1 || index < bestMatchIndex)) {
+                    bestMatch = this.selectableItems[i];
+                    bestMatchIndex = index;
+                }
+            }
+            return bestMatch;
+        },
+        selectPositionUpdate(){
+            selectDropdownBottomPos = this.$refs.selectButton.getBoundingClientRect().top + this.$refs.selectButton.offsetHeight + parseInt(window.getComputedStyle(this.$refs.selectableItemsList).maxHeight);
+            if(window.innerHeight < selectDropdownBottomPos){
+                this.selectDropdownPosition = 'top';
+            } else {
+                this.selectDropdownPosition = 'bottom';
+            }
+            console.log(selectDropdownBottomPos);
+            //console.log(this.$refs.selectButton.getBoundingClientRect().top + this.$refs.selectButton.offsetHeight);
+            //console.log(this.$refs.selectableItemsList.getBoundingClientRect().top);
+            //console.log(parseInt(window.getComputedStyle(this.$refs.selectableItemsList).marginTop));
+            // console.log(window.getComputedStyle(this.$refs.selectableItemsList).maxHeight);
         }
     }"
     x-init="
         $watch('selectableItemsOpen', function(){
             if(!selectedItem){ 
-                selectableItemActive=selectableItems[0]; 
+                selectableItemActive=selectableItems[0];
             } else {
                 selectableItemActive=selectedItem;
             }
-            selectScrollToActiveItem();
+            setTimeout(function(){
+                selectScrollToActiveItem();
+            }, 10);
+            selectPositionUpdate();
+            window.addEventListener('resize', (event) => { selectPositionUpdate(); });
         });
     "
     @keydown.escape="if(selectableItemsOpen){ selectableItemsOpen=false; }"
     @keydown.down="if(selectableItemsOpen){ selectableItemActiveNext(); } else { selectableItemsOpen=true; } event.preventDefault();"
-    @keydown.up="event.preventDefault(); selectableItemActivePrevious()"
+    @keydown.up="if(selectableItemsOpen){ selectableItemActivePrevious(); } else { selectableItemsOpen=true; } event.preventDefault();"
     @keydown.enter="selectedItem=selectableItemActive; selectableItemsOpen=false;"
+    @keydown="selectKeydown($event);"
     class="relative w-64">
 
     <button  x-ref="selectButton" @click="selectableItemsOpen=!selectableItemsOpen"
         :class="{ 'focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400' : !selectableItemsOpen }"
         class="relative min-h-[38px] flex items-center justify-between w-full py-2 pl-3 pr-10 text-left bg-white border rounded-md shadow-sm cursor-default border-neutral-200/70 focus:outline-none  sm:text-sm">
-        <span x-text="selectedItem ? selectedItem.title : 'Select Item'" class="truncate"></span>
+        <span x-text="selectedItem ? selectedItem.title : 'Select Item'" class="truncate">Select Item</span>
         <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-gray-400"><path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd"></path></svg>
         </span>
@@ -120,6 +181,7 @@
         x-transition:enter="transition ease-out duration-50"
         x-transition:enter-start="opacity-0 -translate-y-1"
         x-transition:enter-end="opacity-100"
+        :class="{ 'bottom-0 mb-10' : selectDropdownPosition == 'top', 'top-0 mt-10' : selectDropdownPosition == 'bottom' }"
         class="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-md max-h-56 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
         x-cloak>
 

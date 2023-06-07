@@ -167,7 +167,7 @@
                 @keydown.enter="commandItemSelected=commandItemActive;"
                 @command-input-focus.window="$refs.commandInput.focus();"
                 class="flex min-h-[370px] justify-center w-full max-w-xl items-start relative" x-cloak>
-                <div class="box-border flex flex-col w-full h-full overflow-hidden bg-white rounded-lg shadow-md bg-opacity-80 drop-shadow-md backdrop-blur-sm">
+                <div class="box-border flex flex-col w-full h-full overflow-hidden bg-white rounded-md shadow-md bg-opacity-90 drop-shadow-md backdrop-blur-sm">
                     <div class="flex items-center px-3 border-b border-gray-300">
                         <svg class="w-4 h-4 mr-0 text-neutral-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
                         <input type="text" x-ref="commandInput" x-model="commandSearch" class="flex w-full px-2 py-3 text-sm bg-transparent border-0 rounded-md outline-none focus:outline-none focus:ring-0 focus:border-0 placeholder:text-neutral-400 h-11 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Type a command or search..." autocomplete="off" autocorrect="off" spellcheck="false">
