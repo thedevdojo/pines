@@ -101,7 +101,7 @@
         "menubar" : "w-full p-10 box-border flex items-center justify-center",
         "navigation-menu" : "w-full p-10 box-border flex items-center justify-center",
         "pagination" : "w-full flex items-end justify-center",
-        "popover" : "w-full p-10 box-border flex items-center justify-center",
+        "popover" : "w-full p-10 box-border h-full flex items-center justify-center",
         "progress" : "w-full max-w-sm mx-auto p-10 box-border flex items-center justify-center",
         "quotes" : "w-full p-10 box-border flex items-center justify-center",
         "radio-group" : "w-full p-10 box-border flex items-center justify-center",

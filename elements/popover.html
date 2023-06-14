@@ -16,7 +16,6 @@
             });
         },
         popoverPositionCalculate(){
-            console.log(this.$refs.popoverButton.getBoundingClientRect().top)
             if(window.innerHeight < (this.$refs.popoverButton.getBoundingClientRect().top + this.$refs.popoverButton.offsetHeight + this.popoverOffset + this.popoverHeight)){
                 this.popoverPosition = 'top';
             } else {

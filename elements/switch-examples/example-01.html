@@ -6,9 +6,9 @@
         type="button" 
         @click="switchOn = ! switchOn"
         :class="switchOn ? 'bg-neutral-900' : 'bg-neutral-200'" 
-        class="relative inline-flex h-4 py-0.5 ml-4 rounded-full focus:outline-none w-7"
+        class="relative inline-flex h-4 py-0.5 ml-4 rounded-full focus:outline-none w-6"
         x-cloak>
-        <span :class="switchOn ? 'translate-x-[14px]' : 'translate-x-0.5'" class="w-3 h-3 duration-200 ease-in-out bg-white rounded-full shadow-md"></span>
+        <span :class="switchOn ? 'translate-x-[10px]' : 'translate-x-0.5'" class="w-3 h-3 duration-200 ease-in-out bg-white rounded-full shadow-md"></span>
     </button>
 
     <label @click="$refs.switchButton.click(); $refs.switchButton.focus()" :id="$id('switch')" 

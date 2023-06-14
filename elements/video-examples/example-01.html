@@ -27,8 +27,6 @@
             this.timeElapsedString = `${time.minutes}:${time.seconds}`;
         },
         metaDataLoaded(event) {
-            console.log(event.target.duration);
-            console.log('super!');
             this.videoDuration = event.target.duration;
             this.$refs.videoProgress.setAttribute('max', this.videoDuration);
 
@@ -154,7 +152,7 @@
     x-ref="videoContainer"
     @mouseleave="mouseleave=true" 
     @mousemove="mousemoveVideo"
-    class="relative h-[360px] overflow-hidden rounded-md aspect-video">
+    class="relative h-[360px] min-w-[640px] overflow-hidden rounded-md aspect-video">
     <video 
         x-ref="player"
         @loadedmetadata="metaDataLoaded" 

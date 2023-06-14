@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(element.includes('-examples')){
                     element = element.replace('-examples', '').split('/')[0];
                 }
-                console.log(element);
                 document.getElementById('content').className = data.container[element];
             } else {
                 document.getElementById('content').className = 'max-w-3xl p-10 prose';

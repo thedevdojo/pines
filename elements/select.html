@@ -108,7 +108,6 @@
                     }
                 }
                 
-                console.log(this.selectItemsFindBestMath());
                 if(this.selectKeydownValue != ''){
                     clearTimeout(this.selectKeydownClearTimeout);
                     this.selectKeydownClearTimeout = setTimeout(() => {
@@ -138,11 +137,6 @@
             } else {
                 this.selectDropdownPosition = 'bottom';
             }
-            console.log(selectDropdownBottomPos);
-            //console.log(this.$refs.selectButton.getBoundingClientRect().top + this.$refs.selectButton.offsetHeight);
-            //console.log(this.$refs.selectableItemsList.getBoundingClientRect().top);
-            //console.log(parseInt(window.getComputedStyle(this.$refs.selectableItemsList).marginTop));
-            // console.log(window.getComputedStyle(this.$refs.selectableItemsList).maxHeight);
         }
     }"
     x-init="
