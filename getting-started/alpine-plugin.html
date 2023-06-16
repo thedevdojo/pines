@@ -35,7 +35,7 @@
 
 &#x3C;/div&#x3E;</code></pre>
 
-<div role="alert" class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:text-foreground [&amp;>svg]:left-4 [&amp;>svg]:top-5 [&amp;>svg+div]:translate-y-0 [&amp;:has(svg)]:pl-11 flex items-center text-foreground">
+<div role="alert" class="relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-5 [&>svg+div]:translate-y-0 [&:has(svg)]:pl-11 flex items-center text-foreground">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 -translate-y-px"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
     <div class="text-sm">First we will show you the final plugin code and then we will dissect it to show you how it works.</div>
 </div>
@@ -136,7 +136,7 @@ let tooltipPosition = 'top';
 let tooltipId = 'tooltip-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
 // These are all the possible positions for the tooltip
 let positions = ['top', 'bottom', 'left', 'right'];
-// We need to check the position of the element that the tooltip is attached to, if it is not relative, absolute, or fixed, then we will set it to relative
+// We need to check the position of the element that the tooltip is attached to, we'll use this variable in a following step
 let elementPosition = getComputedStyle(el).position;</code></pre>
 
 <p class="text-gray-500">Next we will loop through all the positions to see if the directive has any of the following modifiers `.top, .left, .bottom, .right`.</p>
@@ -157,7 +157,7 @@ let elementPosition = getComputedStyle(el).position;</code></pre>
     <li>x-tooltip.right="tooltip on the right"</li>
 </ul>
 
-<p class="text-gray-500">Because our tooltip has an absolute position we need the parent element to have a position of relative, absolute, or fixed. If it is not we will set the position to relative:</p>
+<p class="text-gray-500">The reason that we stored the <strong>elementPosition</strong> above is because our tooltip has an <i class="text-black">absolute</i> value, in order for the <i class="text-black">absolute</i> position to work, the parent element position must be <i class="text-black">relative</i>, <i class="text-black">absolute</i>, or <i class="text-black">fixed</i>. If it is none of those we will set the position to <i class="text-black">relative</i>:</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">if(!elementPosition.includes(['relative', 'absolute', 'fixed'])){
     el.style.position='relative';
@@ -193,7 +193,7 @@ let mouseLeave = function(event){
 el.addEventListener('mouseenter', mouseEnter);
 el.addEventListener('mouseleave', mouseLeave);</code></pre>
 
-<p class="text-gray-500">Finally, the last peice of code is using a helper callback function called <strong>cleanup()</strong> that is provided by AlpineJS. It will allow us to perform any cleanup functionality, such as removing event listeners, whenever the parent element is removed from the DOM:</p>
+<p class="text-gray-500">Finally, the last piece of code is using a helper callback function called <strong>cleanup()</strong> that is provided by AlpineJS. It will allow us to perform any cleanup functionality, such as removing event listeners, whenever the parent element is removed from the DOM:</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">cleanup(() => {
     el.removeEventListener('mouseenter', mouseEnter);
@@ -202,7 +202,7 @@ el.addEventListener('mouseleave', mouseLeave);</code></pre>
 
 <p class="text-gray-500">And that's how you would go about creating a simple Alpine plugin that can be re-used throughout your application.</p>
 
-<div role="alert" class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:text-foreground [&amp;>svg]:left-4 [&amp;>svg]:top-5 [&amp;>svg+div]:translate-y-0 [&amp;:has(svg)]:pl-11 flex items-start text-foreground">
+<div role="alert" class="relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-5 [&>svg+div]:translate-y-0 [&:has(svg)]:pl-11 flex items-start text-foreground">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 -mt-px translate-y-1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
     <div class="text-sm">Every element contains different functionality, so creating a plugin for each element will be different as well. But, hopefully this example will set you on the right path to abstracting plugins for future use.</div>
 </div>
@@ -211,6 +211,6 @@ el.addEventListener('mouseleave', mouseLeave);</code></pre>
 
 <h3>Why not create Pines as a separate library</h3>
 
-<p class="text-gray-500">We wanted to build a set of UI elements that are highly customizable and flexible. These elements will allow developers to easily integrate them with any <a href="https://tallstack.dev" target="_blank">Tallstack</a> application. This will let you to use these elements and possibly even build your own UI library 😉 If you only use a handful of these elements, you can use them separately and you won't end up including a ton of functionality you don't even use.</p>
+<p class="text-gray-500">We wanted to build a set of UI elements that are highly customizable and flexible. These elements will allow developers to easily integrate them with any <a href="https://tallstack.dev" target="_blank">Tallstack</a> application. If the demand is high enough, we may strongly consider converting Pines into it's own external library.</p>
 
-<p class="text-gray-500">It's possible that this could change down the road or we might keep it the same and build a ton more copy-paste components. Be sure to give us a <a href="https://github.com/thedevdojo/pines" target="_blank">Star on Github</a> and <a href="/pines/docs/contribution" @click="activeMenuItem = 'contribution'; loadPage($event)">contribute</a> if you want to help steer the direction of this project.</p>
+<p class="text-gray-500">Be sure to let us know your thoughts, give us a <a href="https://github.com/thedevdojo/pines" target="_blank">Star on Github</a>, and consider <a href="/pines/docs/contribution" @click="activeMenuItem = 'contribution'; loadPage($event)">contributing</a> to help steer the direction of this project.</p>
