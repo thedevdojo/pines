@@ -1,33 +1,9 @@
 <div x-data="{
-        dropdownOpen: false,
-        dropdownPosition: 'bottom',
-        dropdownPositionUpdate(){
-            if(!this.dropdownOpen){
-                let that = this;
-                this.dropdownOpen = true;
-                this.$refs.dropdown.classList.add('invisible');
-                setTimeout(function(){
-                    that.dropdownPositionUpdate();
-                }, 100);
-                return;
-            }
-            dropdownBottomPos = this.$refs.dropdownButton.getBoundingClientRect().top + this.$refs.dropdownButton.offsetHeight + parseInt(window.getComputedStyle(this.$refs.dropdown).maxHeight);
-            if(window.innerHeight < dropdownBottomPos){
-                this.dropdownPosition = 'top';
-            } else {
-                this.dropdownPosition = 'bottom';
-            }
-            this.dropdownOpen = false;
-            this.$refs.dropdown.classList.remove('invisible');
-        }
+        dropdownOpen: false
     }"
-    x-init="
-        dropdownPositionUpdate();
-        window.addEventListener('resize', (event) => { dropdownPositionUpdate(); });
-    "
     class="relative">
 
-    <button @click="dropdownOpen=true" x-ref="dropdownButton" class="inline-flex items-center justify-center h-12 py-2 pl-3 pr-12 text-sm font-medium transition-colors bg-white border rounded-md text-neutral-700 hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
+    <button @click="dropdownOpen=true" class="inline-flex items-center justify-center h-12 py-2 pl-3 pr-12 text-sm font-medium transition-colors bg-white border rounded-md text-neutral-700 hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
         <img src="https://cdn.devdojo.com/images/may2023/adam.jpeg" class="object-cover w-8 h-8 border rounded-full border-neutral-200" />
         <span class="flex flex-col items-start flex-shrink-0 h-full ml-2 leading-none translate-y-px">
             <span>Adam Wathan</span>
@@ -36,14 +12,12 @@
         <svg class="absolute right-0 w-5 h-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" /></svg>          
     </button>
 
-    <div x-show="dropdownOpen"
-        x-ref="dropdown"
+    <div x-show="dropdownOpen" 
         @click.away="dropdownOpen=false"
         x-transition:enter="ease-out duration-200"
         x-transition:enter-start="-translate-y-2"
         x-transition:enter-end="translate-y-0"
-        :class="{ 'top-0' : dropdownPosition == 'top', 'bottom-0' : dropdownPosition == 'bottom' }"
-        class="absolute top-0 z-50 invisible w-56 mt-12 -translate-x-1/2 left-1/2"
+        class="absolute top-0 z-50 w-56 mt-12 -translate-x-1/2 left-1/2"
         x-cloak>
         <div class="p-1 mt-1 bg-white border rounded-md shadow-md border-neutral-200/70 text-neutral-700">
             <div class="px-2 py-1.5 text-sm font-semibold">My Account</div>
