@@ -1,0 +1,23 @@
+{
+    "data" : {
+        "commandItems" : "The items inside the command, each object will contain a category of items. Each item includes a title, value, icon, and default value. All items will be searchable, but only default items will be visible with an empty search.",
+        "commandItemsFiltered" : "A filtered array of all the items. Updated on initialize and as the user types in the search field.",
+        "commandItemActive" : "A command item being hovered by the mouse or highlighted by the keyboard.",
+        "commandItemSelected" : "A command item that has been selected by the user via mouse click or enter on keyboard.",
+        "commandId" : "Each item will have a unique ID, which is used to scroll to element in the event of an overflow of items in the command menu.",
+        "commandSearch" : "The search term entered by the user.",
+        "commandSearchIsEmpty()" : "A boolean value indicating if the search field is empty or not.",
+        "commandItemIsActive(item)" : "A boolean value indicating if the command item is active or not.",
+        "commandItemActiveNext()" : "Based on the current active item, this will be the next item in the list.",
+        "commandItemActivePrevious()" : "Based on the current active item, this will be the previous item in the list.",
+        "commandScrollToActiveItem()" : "If there are more commands than can fit in the menu, this will scroll the menu to the active item.",
+        "commandSearchItems()" : "This will filter the command items based on the search term.",
+        "commandShowCategory(item, index)" : "When the user searches, this function will determine if the filtered items contain a category that should be shown.",
+        "commandCategoryCapitalize(string)" : "Simple helper function to capitalize the category name.",
+        "commandItemsReorganize()" : "This will re-organize the commandItems on init. It will flatten them into a single dimensional array. This makes it easier to filter and iterate over the items."
+    },
+    "additional" : {
+        "description" : "<p>Inside the <strong>init</strong> method is a watcher for the <strong>commandItemSelected</strong> which console.logs the selected item. Replace the console.log with your own functionality you want to use when a user selects that item.</p>",
+        "note" : "To use this component, all you need do is add your own commandItems and add the desired functionality for when a user selects the item."
+    }
+}

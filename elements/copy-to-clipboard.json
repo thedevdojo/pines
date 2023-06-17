@@ -1,0 +1,7 @@
+{
+    "data" : {
+        "copyText" : "The text to be copied to the clipboard",
+        "copyNotification" : "Boolean value that will show whether or not the text has been copied",
+        "copyToClipboard()" : "The function that will copy the value inside of copyText to the clipboard"
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "data" : {
+        "dropdownOpen" : "Boolean value that will toggle whether or not the dropdown is open"
+    }
+}

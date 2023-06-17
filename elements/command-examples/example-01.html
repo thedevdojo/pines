@@ -124,6 +124,11 @@
         commandItemsFiltered = commandItems;
         commandItemActive=commandItems[0];
         $watch('commandSearch', value => commandSearchItems());
+        $watch('commandItemSelected', function(item){
+            if(item){
+                console.log('item:', item);
+            }
+        });
     " 
     @keydown.down="event.preventDefault(); commandItemActiveNext();" 
     @keydown.up="event.preventDefault(); commandItemActivePrevious()" 
@@ -146,7 +151,7 @@
                     
                     <template x-if="(item.default && commandSearchIsEmpty()) || !commandSearchIsEmpty()">
                         <div class="px-1">
-                            <div :id="item.value + '-' + commandId" :class="{ 'bg-blue-600 text-white' : commandItemIsActive(item) }" @mousemove="commandItemActive=item" class="relative flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+                            <div :id="item.value + '-' + commandId" @click="commandItemSelected=item" @mousemove="commandItemActive=item" :class="{ 'bg-blue-600 text-white' : commandItemIsActive(item) }" class="relative flex cursor-default select-none items-center rounded px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
                                 <span x-html="item.icon"></span>
                                 <span x-text="item.title"></span>
                                 <template x-if="item.right">
