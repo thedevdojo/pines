@@ -1,0 +1,9 @@
+{
+    "data" : {
+        "previewFullScreenMenu (for demo)" : "This is a preview of the full screen menu whether it's visible or not and is really only used for the purposes of this demo.",
+        "previewFullScreenMenu" : "This will toggle the fullscreen menu to be open or closed."
+    },
+    "additional" : {
+        "description" : "<p>You will most likely only want the content inside of the <code>&lt;template x-teleport=&#x22;body&#x22;&gt;</code> section. The other content outside of this element are for demo purposes.</p>"
+    }
+}

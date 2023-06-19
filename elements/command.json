@@ -16,8 +16,11 @@
         "commandCategoryCapitalize(string)" : "Simple helper function to capitalize the category name.",
         "commandItemsReorganize()" : "This will re-organize the commandItems on init. It will flatten them into a single dimensional array. This makes it easier to filter and iterate over the items."
     },
+    "alert_notification" : {
+        "title" : "Adding items to the command",
+        "description" : "In order to make use of this component you can simply add your items inside of the <strong>commandItems</strong> array. Each item will have a title, value, icon, and default value. All items will be searchable, but only default items will be visible with an empty search. Learn how to get the selected item below."
+    },
     "additional" : {
-        "description" : "<p>Inside the <strong>init</strong> method is a watcher for the <strong>commandItemSelected</strong> which console.logs the selected item. Replace the console.log with your own functionality you want to use when a user selects that item.</p>",
-        "note" : "To use this component, all you need do is add your own commandItems and add the desired functionality for when a user selects the item."
+        "description" : "<p>Inside the <strong>init</strong> method is a watcher for the <strong>commandItemSelected</strong> which console.logs the selected item. Replace the console.log with your own functionality you want to use when a user selects that item.</p>"
     }
 }

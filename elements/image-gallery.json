@@ -1,0 +1,16 @@
+{
+    "data" : {
+        "imageGalleryOpened" : "A boolean value to determine if the image gallery is opened or closed.",
+        "imageGalleryActiveUrl" : "The src URL of the image that is currently active.",
+        "imageGalleryImageIndex" : "When the image gallery is initialized we'll add an data-index incrementor (1, 2, 3, ... etc.) to all the images in the gallery.",
+        "imageGalleryOpen(event)" : "The method that can be called to open the image gallery.",
+        "imageGalleryClose()" : "The method that can be called to close the image gallery.",
+        "imageGalleryNext()" : "The method that will be called to load the next image in the gallery.",
+        "imageGalleryPrev()" : "The method that will be called to load the previous image in the gallery."
+        
+    },
+    "alert_notification" : {
+        "title" : "Add or remove images",
+        "description" : "Simply add or remove your own <strong><code>&lt;li&gt;&lt;img src='...' /&gt;&lt;/li&gt;</code></strong> elements to the image gallery, and it will automatically be reflected in the gallery."
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "data" : {
+        "fullscreenModal" : "A boolean value that will toggle the fullscreen modal to be open or closed."
+    },
+    "additional" : {
+        "description" : "<p>The first <code>&lt;button&gt;</code> element can be any button or element you choose as long as it has the <code>@click=&#x22;fullscreenModal=true&#x22;</code> attribute it will work the same and show the full screen modal when it is clicked.</p>"
+    }
+}

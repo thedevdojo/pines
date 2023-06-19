@@ -1,9 +1,9 @@
 <div x-data="{ 
         hoverCardHovered: false,
-        hoverCardTimout: null,
-        hoverCardLeaveTimeout: null,
         hoverCardDelay: 600,
         hoverCardLeaveDelay: 500,
+        hoverCardTimout: null,
+        hoverCardLeaveTimeout: null,
         hoverCardEnter () {
             clearTimeout(this.hoverCardLeaveTimeout);
             if(this.hoverCardHovered) return;

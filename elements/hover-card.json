@@ -1,0 +1,11 @@
+{
+    "data" : {
+        "hoverCardHovered" : "A boolean value that will show or hide the card.",
+        "hoverCardDelay" : "When the user hovers, how long (in milliseconds) should the hover card be shown",
+        "hoverCardLeaveDelay" : "When the users mouse leaves, how long (in milliseconds) should the hover card be hidden",
+        "hoverCardTimout" : "The timeout for the hover event, leave this set to null.",
+        "hoverCardLeaveTimeout" : "The timeout for the mouse leave event, leave this set to null.",
+        "hoverCardEnter()" : "The method that handles the hover event.",
+        "hoverCardLeave()" : "The method that handles the mouse leave event."
+    }
+}
