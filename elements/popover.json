@@ -1,0 +1,15 @@
+{
+    "data" : {
+        "popoverOpen" : "A boolean value that will toggle the popover open or close.",
+        "popoverArrow": "A boolean value that will show or hide the popover arrow",
+        "popoverPosition" : "A value that will indicate whether the popover should be at the bottom or top.",
+        "popoverHeight" : "The height of the popover. This will be calculated on initialize.",
+        "popoverOffset" : "An offset value in pixels that will be applied to the popover position.",
+        "popoverHeightCalculate()" : "A method that will calculate the height of the popover.",
+        "popoverPositionCalculate()" : "A method that will calculate whether the popover should be at top or bottom."
+    },
+    "alert_notification" : {
+        "title" : "Alpine Focus Plugin",
+        "description" : "This element uses the <a href=\"https://alpinejs.dev/plugins/focus\" target=\"_blank\" class=\"underline\">AlpineJS focus plug-in</a>, which will trap the focus inside the popover when opened and return focus to the trigger when closed."
+    }
+}

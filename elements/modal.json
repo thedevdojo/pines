@@ -1,0 +1,9 @@
+{
+    "data" : {
+        "modalOpen" : "A boolean value that will toggle the modal open or close."
+    },
+    "alert_notification" : {
+        "title" : "Alpine Teleport Directive",
+        "description" : "This element uses the <a href=\"https://alpinejs.dev/directives/teleport\" target=\"_blank\" class=\"underline\">AlpineJS teleport directive</a>, which will teleport the Modal element to be a child of the body element. This allows the modal to be full-screen and prevents any display issues with its parent elements."
+    }
+}

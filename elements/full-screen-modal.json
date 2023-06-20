@@ -2,6 +2,10 @@
     "data" : {
         "fullscreenModal" : "A boolean value that will toggle the fullscreen modal to be open or closed."
     },
+    "alert_notification" : {
+        "title" : "Alpine Teleport Directive",
+        "description" : "This element uses the <a href=\"https://alpinejs.dev/directives/teleport\" target=\"_blank\" class=\"underline\">AlpineJS teleport directive</a>, which will teleport the Full-screen modal to be a child of the body element. This allows the modal to be full-screen and prevents any display issues with its parent elements."
+    },
     "additional" : {
         "description" : "<p>The first <code>&lt;button&gt;</code> element can be any button or element you choose as long as it has the <code>@click=&#x22;fullscreenModal=true&#x22;</code> attribute it will work the same and show the full screen modal when it is clicked.</p>"
     }

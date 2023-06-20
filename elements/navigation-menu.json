@@ -1,0 +1,12 @@
+{
+    "data" : {
+        "navigationMenuOpen" : "A boolean value that signifies whether the menu is opened or closed.",
+        "navigationMenu" : "The menu that is currently opened. (example: 'getting-started', 'learn-more', etc.)",
+        "navibationMenuCloseDelay" : "The delay in milliseconds before the menu closes after the mouse leaves the menu.",
+        "navigationMenuCloseTimeout" : "The timeout for the menu mouse leave event, leave this set to null.",
+        "navigationMenuLeave()" : "This method will trigger the menu to close after the mouse leaves.",
+        "navigationMenuReposition(navElement)" : "This method will position the menu to be centered aligned to the navigation item that is hovered.",
+        "navigationMenuClearCloseTimeout()" : "This method will clear the close timeout for the menu. This might occur if the user hovers back over a navigation item.",
+        "navigationMenuClose()" : "This method will close the menu by setting navigationMenuOpen to false, and clearing the value of navigationMenu."
+    }
+}

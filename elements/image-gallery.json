@@ -10,7 +10,10 @@
         
     },
     "alert_notification" : {
-        "title" : "Add or remove images",
-        "description" : "Simply add or remove your own <strong><code>&lt;li&gt;&lt;img src='...' /&gt;&lt;/li&gt;</code></strong> elements to the image gallery, and it will automatically be reflected in the gallery."
+        "title" : "Alpine Teleport Directive",
+        "description" : "This element uses the <a href=\"https://alpinejs.dev/directives/teleport\" target=\"_blank\" class=\"underline\">AlpineJS teleport directive</a>, which will teleport the Image Gallery to be a child of the body element. This allows the gallery to be full-screen and prevents any display issues with its parent elements."
+    },
+    "additional" : {
+        "description" : "<p>Adding or removing your own images is as simple as adding or removing the <strong><code>&lt;li&gt;&lt;img src='...' /&gt;&lt;/li&gt;</code></strong> elements inside of the image gallery element (this is the same element that contains the <code>x-ref=&#x22;gallery&#x22;</code> reference).</p>"
     }
 }

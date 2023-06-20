@@ -1,0 +1,6 @@
+{
+    "data" : {
+        "radioGroupSelectedValue" : "The value of the current selected radio button.",
+        "radioGroupOptions": "An array of radio group options containing the title, description, and value."
+    }
+}

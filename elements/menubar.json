@@ -1,0 +1,10 @@
+{
+    "data" : {
+        "menuBarOpen" : "A boolean value that signifies whether the menu bar is opened or closed.",
+        "menuBarMenu" : "The menu bar that is currently opened. (example: 'file', 'edit', etc.)"
+    },
+    "alert_notification" : {
+        "title" : "Create your own menu",
+        "description" : "You can define your own menu by duplicating one of the existing menus and changing the name. You can then add your own menu items."
+    }
+}
