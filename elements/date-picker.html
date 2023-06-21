@@ -96,7 +96,7 @@
         datePickerCalculateDays();
     " x-cloak>
     <div class="container px-4 py-2 mx-auto md:py-10">
-        <div class="w-64 mb-5">
+        <div class="w-full mb-5">
             <label for="datepicker" class="block mb-1 text-sm font-medium text-neutral-500">Select Date</label>
             <div class="relative w-[17rem]">
                 <input x-ref="datePickerInput" type="text" @click="datePickerOpen=!datePickerOpen" x-model="datePickerValue" x-on:keydown.escape="datePickerOpen=false" class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md text-neutral-600 border-neutral-300 ring-offset-background placeholder:text-neutral-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Select date" readonly />

@@ -1,0 +1,33 @@
+{
+    "data" : {
+        "sources" : "The video sources for the video player. This includes the .mp4, .webm, and .ogg file to support all browsers.",
+        "playing": "A boolean value that will indicate whether the video is currently playing or not.",
+        "controls" : "A boolean value to show or hide the controls on the video player.",
+        "muted" : "A boolean value that will mute or unmute the video player.",
+        "fullscreen" : "A boolean value that will toggle the video to fullscreen.",
+        "ended" : "A boolean value that will indicate whether the video has ended or not.",
+        "mouseleave" : "A boolean value that will indicate whether or not the users mouse has left the video player.",
+        "autoHideControlsDelay": "Delay in milliseconds before the controls will hide.",
+        "controlsHideTimeout" : "The timeout interval event for hiding the controls.",
+        "poster" : "The poster image for the video player.",
+        "videoDuration" : "The total duration of the current video",
+        "timeDurationString": "The duration of the video in '00:00' format",
+        "timeElapsedString": "The time elapsed of the video in '00:00' format",
+        "showTime" : "A boolean value that will indicate whether the time should be shown or not.",
+        "volume" : "The current volume of the video player.",
+        "volumeBeforeMute" : "We need to store the volume before we mute the video player so that we can unmute it to the correct volume.",
+        "videoPlayerReady" : "A boolean value that will indicate whether the video player is ready to play or not.",
+        "timelineSeek(e)" : "A function that will seek to a specific time in the video.",
+        "metaDataLoaded(event)" : "A function that will be called when the video meta data has loaded.",
+        "togglePlay(e)" : "A function that will toggle the video player between playing and paused.",
+        "toggleMute()" : "A function that will toggle the video player between muted and unmuted.",
+        "timeUpdatedInterval()" : "An interval method that will continuously be called as the video is playing.",
+        "updateVolume(e)" : "A function that will update the volume of the video player.",
+        "timelineClicked(e)" : "A function that will seek to a specific time in the video when the timeline is clicked.",
+        "handleFullscreen()" : "A function that will set document.fullscreenElement or exit the fullscreen.",
+        "mousemoveVideo()" : "A function that will fire when a mouse move event is triggered over the video.",
+        "videoEnded()" : "A function that will fire when the video has ended.",
+        "resetControlsTimeout()" : "A function that will reset the controls timeout.",
+        "formatTime(timeInSeconds)" : "A function that will convert `seconds` to minutes and seconds"
+    }
+}

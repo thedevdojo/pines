@@ -1,5 +1,4 @@
 <div x-data="{
-        player: null,
         sources: {
             mp4: 'https://cdn.devdojo.com/pines/videos/coast.mp4',
             webm: 'https://cdn.devdojo.com/pines/videos/coast.webm',
@@ -11,9 +10,8 @@
         fullscreen: false,
         ended: false,
         mouseleave: false,
-        controlsHideTimeout: null,
         autoHideControlsDelay: 3000,
-        previewImage: null,
+        controlsHideTimeout: null,
         poster: null,
         videoDuration: 0,
         timeDurationString: '00:00',
@@ -160,7 +158,7 @@
         @timeupdate="timeUpdatedInterval" 
         @ended="videoEnded"
         preload="metadata" 
-        :poster=""
+        :poster="poster"
         class="relative z-10 object-cover w-full h-full bg-black"
         crossorigin="anonymous"
         >

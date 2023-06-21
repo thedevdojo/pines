@@ -80,7 +80,7 @@
     "container" : {
         "accordion" : "w-full sm:p-10 p-4 box-border flex items-start justify-start max-w-lg mx-auto",
         "alert" : "w-full sm:p-10 p-4 box-border flex flex-col space-y-5 items-center justify-center max-w-3xl mx-auto",
-        "badge" : "w-full sm:p-10 p-4 box-border flex items-center justify-center space-x-2",
+        "badge" : "w-full sm:p-10 p-4 overflow-scroll box-border flex items-center justify-center space-x-2",
         "banner" : "w-full relative overflow-hidden",
         "breadcrumbs" : "w-full sm:p-10 p-4 box-border flex items-center justify-center mx-auto",
         "button" : "w-full sm:p-10 p-4 box-border flex space-x-3 items-center justify-center mx-auto",
