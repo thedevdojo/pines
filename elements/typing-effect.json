@@ -1,0 +1,17 @@
+{
+    "data" : {
+        "text" : "This is the variable that contains the current string being displayed.",
+        "textArray": "An array of strings to be typed on the screen.",
+        "textIndex" : "This variable is used to keep track of which string in the textArray is currently being displayed.",
+        "charIndex" : "This is used to keep track of the current character index that is being typed onto the screen.",
+        "typeSpeed" : "In milliseconds, this is the speed that each character will be typed onto the screen.",
+        "cursorSpeed" : "In milliseconds, this is the speed that the cursor will blink on and off.",
+        "pauseEnd" : "In milliseconds, this is the time that the typing will pause after the string has been typed onto the screen.",
+        "pauseStart" : "In milliseconds, this is the time that the typing will pause before each new string begins typing onto the screen.",
+        "direction" : "This is the direction that the typing will occur. The options are 'forward' or 'backward'."
+    },
+    "alert_notification" : {
+        "title" : "Typing Effect Tutorial",
+        "description" : "If you want to learn more about how this functions, you may be interested in our extensive tutorial on how to <a href=\"https://devdojo.com/tnylea/create-a-typing-effect-in-alpinejs\" target=\"_blank\" class=\"underline\">Create a Typing Effect in AlpineJS</a>."
+    }
+}
