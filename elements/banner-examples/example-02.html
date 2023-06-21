@@ -1,7 +1,8 @@
 <div x-data="{
         bannerVisible: false,
         bannerVisibleAfter: 300
-    }" x-show="bannerVisible" 
+    }" 
+    x-show="bannerVisible" 
     x-transition:enter="transition ease-out duration-500" 
     x-transition:enter-start="translate-y-full" 
     x-transition:enter-end="translate-y-0" 
@@ -11,13 +12,13 @@
     x-init="
         setTimeout(()=>{ bannerVisible = true }, bannerVisibleAfter);
     "
-    class="fixed bottom-0 right-0 h-auto px-5 pb-5 duration-300 ease-out w-96 lg:w-full" x-cloak>
-    <div class="flex flex-col items-center justify-between w-full h-full max-w-4xl p-8 mx-auto bg-white shadow-lg lg:flex-row rounded-xl">
+    class="fixed bottom-0 right-0 w-full h-auto duration-300 ease-out sm:px-5 sm:pb-5 sm:w-[26rem] lg:w-full" x-cloak>
+    <div class="flex flex-col items-center justify-between w-full h-full max-w-4xl p-6 mx-auto bg-white border-t shadow-lg lg:p-8 lg:flex-row sm:border-0 sm:rounded-xl">
         <div class="flex flex-col items-start h-full pb-6 text-xs lg:items-center lg:flex-row lg:pb-0 lg:pr-6 lg:space-x-5 text-neutral-600">
-            <img src="https://cdn-icons-png.flaticon.com/512/9004/9004938.png" class="w-16 h-16">
+            <img src="https://cdn-icons-png.flaticon.com/512/9004/9004938.png" class="w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16">
             <div class="pt-6 lg:pt-0">
                 <h4 class="w-full mb-1 text-xl font-bold leading-none -translate-y-1 text-neutral-900">Cookie Notice</h4>
-                <p>We use cookies to make your online experience better. By continuing to browse, you give us your digital consent to indulge you with some sweet, data-filled treats.</p>
+                <p class="">We use cookies to make your online experience better. <span class="hidden lg:inline">By continuing to browse, you give us your digital consent to indulge you with some sweet, data-filled treats.</span></p>
             </div>
         </div>
         <div class="flex items-end justify-end w-full pl-3 space-x-3 lg:flex-shrink-0 lg:w-auto">
