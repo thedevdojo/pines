@@ -1,0 +1,20 @@
+{
+    "data" : {
+        "selectOpen" : "A boolean value that will determine if the select dropdown is open or not",
+        "selectedItem" : "The current selected item. This will hold the object of the selected item where you can get the title and value",
+        "selectableItems": "An array containing an objects of selectable items. Each object should have a title, value, and disabled property",
+        "selectableItemActive" : "This value contains an active item. An item is considered active when it is hovered or highlighted via the keyboard",
+        "selectId" : "Each select element in your project will contain a unique ID, this will contain the unique ID",
+        "selectKeydownValue" : "When the select element is focused and the user enters a key, the closest matching item will be selected",
+        "selectKeydownTimeout" : "The timeout in milliseconds to clear the keydown value. (example: If a user types 'a', and waits two seconds and types 'b', we should search for an item starting with 'b', instead of 'ab')",
+        "selectDropdownPosition" : "The positioning of the dropdown. Possible values are 'bottom' or 'top'",
+        "selectKeydownClearTimeout" : "The timeout interval for the keydown value to be cleared",
+        "selectableItemIsActive(item)" : "A method that will check if the item passed in is the current active item",
+        "selectableItemActiveNext()" : "A method that will set the next item as active",
+        "selectableItemActivePrevious()" : "A method that will set the previous item as active",
+        "selectScrollToActiveItem()" : "A method that will scroll the active item into view",
+        "selectKeydown(event)" : "This method will handle the keydown event on the select element",
+        "selectItemsFindBestMatch()" : "This method will find the best matching item based on the keydown value",
+        "selectPositionUpdate()" : "This method will calculate the position of the element and determine if selectDropdownPosition should be set to 'bottom or 'top'"
+    }
+}

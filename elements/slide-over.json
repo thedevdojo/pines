@@ -1,0 +1,5 @@
+{
+    "data" : {
+        "slideOverOpen" : "A boolean value that will open or close the slide-over"
+    }
+}

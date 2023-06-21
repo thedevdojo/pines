@@ -1,0 +1,17 @@
+{
+    "data" : {
+        "startingAnimation" : "An object containing the starting position of each character in the text. Text will be animated from this position to the ending position.",
+        "endingAnimation" : "An object containing the ending position of each character in the text.",
+        "addCNDScript" : "A boolean value, if set to true it will append the GSAP library to the page if it is not already loaded.",
+        "animateText()" : "This method will play the text animation.",
+        "splitCharactersIntoSpans(element)" : "This method will split all the characters into individual spans, allowing each character to be animated individually.",
+        "addScriptToHead(url)" : "This method will append the GSAP library to the head of the page."
+    },
+    "alert_notification" : {
+        "title" : "GSAP Library",
+        "description" : "This element makes use of the GSAP plugin. It will automatically be added if <strong>addCNDScript</strong> is set to true. If GSAP is already loaded on your page, you can set <strong>addCNDScript</strong> to false and the library will not be added to your page."
+    },
+    "additional" : {
+        "description" : "<p>Learn more about the <strong>startingAnimation</strong> and <strong>endingAnimation</strong> objects by referring to the <a href=\"https://greensock.com/docs/v3/GSAP/gsap.fromTo()\" target=\"_blank\" class=\"underline\">gsap.fromTo() documentation</a>.</p>"
+    }
+}

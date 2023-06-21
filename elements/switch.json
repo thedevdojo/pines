@@ -1,0 +1,5 @@
+{
+    "data" : {
+        "switchOn" : "A boolean value that will toggle the switch on or off (active or inactive)"
+    }
+}

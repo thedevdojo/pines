@@ -1,0 +1,16 @@
+{
+    "data" : {
+        "tabSelected" : "The index value of the currently selected tab. (starts at 1, not 0)",
+        "tabId": "This is a unique ID that will be applied to the tab element. You can keep this as is or change it to something more meaningful.",
+        "tabButtonClicked(tabButton)" : "A method that will be called when a tab button is clicked. The tab button element will be passed as a parameter.",
+        "tabRepositionMarker(tabButton)" : "This method will reposition the tab marker.",
+        "tabContentActive(tabContent)" : "This method will return true or false if the tab content is active. The tab content element should be passed as a parameter."
+    },
+    "alert_notification" : {
+        "title" : "Adding your own tabs and content",
+        "description" : "To add your own buttons, you will need to add a button inside the <strong>x-ref=\"tabButtons\"</strong> element. More info below on how to implement new buttons and content."
+    },
+    "additional" : {
+        "description" : "<p>Each tab button needs to contain the following attributes <strong>:id=\"$id(tabId)\" @click=\"tabButtonClicked($el)\"</strong>. Each button will sequentially show or hide any content element with the following attributes <strong>:id=\"$id(tabId + '-content')\" x-show=\"tabContentActive($el)\"</strong>. See example one below for a simple demo of this functionality.</p>"
+    }
+}

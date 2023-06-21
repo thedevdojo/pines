@@ -1,32 +1,30 @@
 <div
     x-data="{
         tabSelected: 1,
+        tabId: $id('tabs'),
         tabButtonClicked(tabButton){
-            this.tabSelected = tabButton.id.replace('tab-button-', '');
+            this.tabSelected = tabButton.id.replace(this.tabId + '-', '');
             this.tabRepositionMarker(tabButton);
         },
-        tabButtonActive(tabButton){
-            return this.tabSelected == tabButton.id.replace('tab-button-', '');
+        tabRepositionMarker(tabButton){
+            this.$refs.tabMarker.style.width=tabButton.offsetWidth + 'px';
+            this.$refs.tabMarker.style.height=tabButton.offsetHeight + 'px';
+            this.$refs.tabMarker.style.left=tabButton.offsetLeft + 'px';
         },
         tabContentActive(tabContent){
-            return this.tabSelected == tabContent.id.replace('tab-content-', '');
-        },
-        tabRepositionMarker(el){
-            this.$refs.tabMarker.style.width=el.offsetWidth + 'px';
-            this.$refs.tabMarker.style.height=el.offsetHeight + 'px';
-            this.$refs.tabMarker.style.left=el.offsetLeft + 'px';
-        },
+            return this.tabSelected == tabContent.id.replace(this.tabId + '-content-', '');
+        }
     }"
     
     x-init="tabRepositionMarker($refs.tabButtons.firstElementChild);" class="relative w-full max-w-sm">
     
     <div x-ref="tabButtons" class="relative inline-grid items-center justify-center w-full h-10 grid-cols-2 p-1 text-gray-500 bg-gray-100 rounded-lg select-none">
-        <button :id="$id('tab-button')" type="button" @click="tabButtonClicked($el); " class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">Account</button>
-        <button :id="$id('tab-button')" type="button" @click="tabButtonClicked($el);" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">Password</button>
+        <button :id="$id(tabId)" @click="tabButtonClicked($el);" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">Account</button>
+        <button :id="$id(tabId)" @click="tabButtonClicked($el);" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">Password</button>
         <div x-ref="tabMarker" class="absolute left-0 z-10 w-1/2 h-full duration-300 ease-out" x-cloak><div class="w-full h-full bg-white rounded-md shadow-sm"></div></div>
     </div>
     <div class="relative w-full mt-2 content">
-        <div :id="$id('tab-content')" x-show="tabContentActive($el)" class="relative">
+        <div :id="$id(tabId + '-content')" x-show="tabContentActive($el)" class="relative">
             <!-- Tab Content 1 - Replace with your content -->
             <div class="border rounded-lg shadow-sm bg-card text-neutral-900">
                 <div class="flex flex-col space-y-1.5 p-6">
@@ -42,7 +40,7 @@
             <!-- End Tab Content 1 -->
         </div>
 
-        <div :id="$id('tab-content')" x-show="tabContentActive($el)" class="relative" x-cloak>
+        <div :id="$id(tabId + '-content')" x-show="tabContentActive($el)" class="relative" x-cloak>
             <!-- Tab Content 2 - Replace with your content -->
             <div class="border rounded-lg shadow-sm bg-card text-neutral-900">
                 <div class="flex flex-col space-y-1.5 p-6">
