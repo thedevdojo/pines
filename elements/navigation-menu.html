@@ -1,13 +1,13 @@
 <nav x-data="{
         navigationMenuOpen: false,
         navigationMenu: '',
-        navibationMenuCloseDelay: 200,
+        navigationMenuCloseDelay: 200,
         navigationMenuCloseTimeout: null,
         navigationMenuLeave() {
             let that = this;
             this.navigationMenuCloseTimeout = setTimeout(() => {
                 that.navigationMenuClose();
-            }, this.navibationMenuCloseDelay);
+            }, this.navigationMenuCloseDelay);
         },
         navigationMenuReposition(navElement) {
             this.navigationMenuClearCloseTimeout();
