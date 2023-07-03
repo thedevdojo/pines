@@ -1,0 +1,22 @@
+{
+    "data" : {
+        "monacoContent" : "The initial value inside of the editor",
+        "monacoLanguage" : "The language that should be used for syntax highlighting",
+        "monacoPlaceholder" : "Sepcify whether or not you want a placeholder in the editor when there is not code in the editor",
+        "monacoPlaceholderText" : "The placeholder text to be used inside of the editor when no code is present",
+        "monacoLoader" : "This is used to show a loading indicator before the editor has been initialized and ready",
+        "monacoFontSize" : "The font size to be used inside of the editor (may need to adjust the placeholder when changing this)",
+        "monacoId" : "Used to add a unique ID to this element, allowing you to have multiple editors on the same page",
+        "monacoEditor(editor)" : "This is the method that you can use to add your Monaco Events (learn more below)",
+        "updatePlaceholder(value)" : "This method is used to update the placeholder text inside of the editor",
+        "monacoEditorFocus" : "This method is used to focus the editor",
+        "monacoEditorAddLoaderScriptToHead" : "This method is used to add the monaco editor loader script to the head of the document"
+    },
+    "alert_notification" : {
+        "title" : "Monaco Editor Library",
+        "description" : "This element uses the <a href=\"https://microsoft.github.io/monaco-editor/\" target=\"_blank\" class=\"underline\">Monaco Editor</a>, You can add events and listeners for <a href=\"https://microsoft.github.io/monaco-editor/docs.html#modules/editor.html\" target=\"_blank\" class=\"underline\">the editor</a> object inside of the <strong>monacoEditor(editor)</strong> method."
+    },
+    "additional" : {
+        "description" : "<p>Inside of the <strong>x-init</strong> method, after the editor is loaded, you'll find a variable definition like so: <strong>monacoTheme = {}</strong>, you can change the theme by adding your own or including it from the <a href=\"https://github.com/brijeshb42/monaco-themes\" target=\"_blank\" class=\"underline\">monaco themes repo here</a>. View a <a href=\"https://editor.bitwiser.in\" target=\"_blank\" class=\"underline\">demo of all the available themes here</a>.</p>"
+    }
+}
