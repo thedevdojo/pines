@@ -10,3 +10,7 @@ This is the main repo for the Open Source <a href="https://devdojo.com/pines" ta
 4. Visit the localhost URL to see PinesUI
 
 Be sure to visit <a href="https://devdojo.com/questions" target="_blank">DevDojo discussions</a> section to ask questions and get assistance.
+
+## License
+
+The Pines UI Library is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
