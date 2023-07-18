@@ -13,6 +13,10 @@
         },
         tabContentActive(tabContent){
             return this.tabSelected == tabContent.id.replace(this.tabId + '-content-', '');
+        },
+        tabButtonActive(tabContent){
+            const tabId = tabContent.id.split('-').slice(-1);
+            return this.tabSelected == tabId;
         }
     }"
     
