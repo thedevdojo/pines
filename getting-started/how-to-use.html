@@ -3,6 +3,12 @@
 </div>
 <p class="text-gray-500">Pines, is super easy to use. If your application uses Alpine and Tailwind, you can copy and paste an element into your page and it will work flawlessly. If you want to test an element on a single HTML page, you can copy/paste this snippet below into any `.html` file:</p>
 
+<div class="relative w-full rounded-lg border border-transparent p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-4 [&>svg+div]:translate-y-[-3px] [&:has(svg)]:pl-11 bg-yellow-500 text-white">
+    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" /></svg>
+    <h5 class="mb-1 font-medium leading-none tracking-tight">Use in Production</h5>
+    <div class="text-sm [&;_p]:leading-relaxed">The snippet below uses the TailwindCDN which should not be used in your production apps, instead you should bundle Tailwind and Alpine with a <a href="https://tailwindcss.com/docs/guides/vite" target="_blank" class="underline">bundler like Vite</a>.</div>
+</div>
+
 <pre class="block w-full overflow-scroll text-sm border rounded-md hljs html border-neutral-200"><code class="hljs html">&#x3C;!DOCTYPE html&#x3E;
 &#x3C;html lang=&#x22;en&#x22;&#x3E;
 &#x3C;head&#x3E;
