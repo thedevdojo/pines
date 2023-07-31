@@ -35,6 +35,7 @@
         "text-input" : "Text Input",
         "textarea" : "Textarea",
         "textarea-auto-resize" : "Textarea (auto-resize)",
+        "toast": "Toast Notification",
         "tooltip" : "Tooltip",
         "typing-effect" : "Typing Effect",
         "video" : "Video"
@@ -75,6 +76,7 @@
         "textarea-auto-resize" : "A textarea form input element that automatically resizes to fit the content.",
         "text-animation" : "Simple text animation elements.",
         "text-input" : "A form input element that can be used to collect user input.",
+        "toast": "A toast notification that can be used to show a message.",
         "tooltip": "A simple tooltip element that can be used to show additional information.",
         "typing-effect" : "This is an element that can be used to type text on to the screen.",
         "video" : "A customized video element that can be used to display a video."
@@ -115,6 +117,7 @@
         "textarea-auto-resize" : "w-full py-10 px-48 box-border flex items-center justify-center",
         "text-animation" : "w-full py-10 box-border flex items-center justify-center",
         "text-input" : "w-full py-10 px-48 box-border flex items-center justify-center",
+        "toast" : "w-full sm:p-10 p-4 box-border flex items-center justify-center",
         "tooltip" : "w-full sm:p-10 p-4 box-border flex items-center justify-center",
         "typing-effect" : "w-full sm:p-10 p-4 flex items-center justify-center",
         "video" : "py-10 w-[640px] mx-auto box-border flex items-center justify-center"

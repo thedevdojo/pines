@@ -1,0 +1,358 @@
+<div x-data
+    class="relative w-auto h-auto">
+    <div class="relative space-y-5">
+        <div class="relative">
+            <p class="text-xs font-medium mb-2 text-gray-500">Types</p>
+            <div class="relative flex space-x-5">
+                <button @click="toast('Default Toast Notification')" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Default</button>
+                <button @click="toast('Toast Notification', 'This is an example notification with a description')" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">With Description</button>
+            </div>
+        </div>
+        <div class="relative">
+            <p class="text-xs font-medium mb-2 text-gray-500">Position</p>
+            <div class="relative flex space-x-5">
+                
+                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'top-left' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Top Left</button>
+                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'top-center' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Top Center</button>
+                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'top-right' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Top Right</button>
+                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'bottom-left' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Bottom Left</button>
+                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'bottom-center' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Bottom Center</button>
+                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'bottom-right' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Bottom Right</button>
+            </div>
+        </div>
+    </div>
+    <template x-teleport="body">
+        <ul 
+            x-data="{ 
+                toasts: [],
+                toastsHovered: false,
+                expanded: false,
+                layout: 'default',
+                position: 'top-center',
+                paddingBetweenToasts: 15,
+                deleteToastWithId (id){
+                    for(let i = 0; i < this.toasts.length; i++){
+                        if(this.toasts[i].id === id){
+                            this.toasts.splice(i, 1);
+                            break;
+                        }
+                    }
+                },
+                popToast(id){
+                    this.deleteToastWithId(id);
+                    this.stackToasts();
+                    this.calculateHeightOfToastsContainer();
+                },
+                getBottomPositionOfElement(el){
+                    elementRectangle = el.getBoundingClientRect();
+                    return elementRectangle.height;
+                },
+                stackToasts(){
+                    if(this.toasts.length == 0) return;
+                    let topToast = document.getElementById( this.toasts[0].id );
+                    topToast.style.zIndex = 100;
+                    if(this.expanded){
+                        if(this.position.includes('bottom')){
+                            topToast.style.top = 'auto';
+                            topToast.style.bottom = '0px';
+                        } else {
+                            topToast.style.top = '0px';
+                        }
+                    }
+
+                    let bottomPositionOfFirstToast = this.getBottomPositionOfElement(topToast);
+                    console.log(bottomPositionOfFirstToast);
+
+                    if(this.toasts.length == 1) return;
+                    let middleToast = document.getElementById( this.toasts[1].id );
+                    middleToast.style.zIndex = 90;
+
+                    if(this.expanded){
+                        middleToastPosition = topToast.getBoundingClientRect().height +
+                                                this.paddingBetweenToasts + 'px';
+
+                        if(this.position.includes('bottom')){
+                            middleToast.style.top = 'auto';
+                            middleToast.style.bottom = middleToastPosition;
+                        } else {
+                            middleToast.style.top = middleToastPosition;
+                        }
+
+                        middleToast.style.scale = '100%';
+                        middleToast.style.transform = 'translateY(0px)';
+                        
+                    } else {
+                        middleToast.style.scale = '94%';
+                        if(this.position.includes('bottom')){
+                            this.alignTop(topToast, middleToast);
+                            middleToast.style.transform = 'translateY(-16px)';
+                        } else {
+                            this.alignBottom(topToast, middleToast);
+                            middleToast.style.transform = 'translateY(16px)';
+                        }
+                    }
+                    
+
+                    if(this.toasts.length == 2) return;
+                    let bottomToast = document.getElementById( this.toasts[2].id );
+                    bottomToast.style.zIndex = 80;
+                    if(this.expanded){
+                        bottomToastPosition = topToast.getBoundingClientRect().height + 
+                                                this.paddingBetweenToasts + 
+                                                middleToast.getBoundingClientRect().height +
+                                                this.paddingBetweenToasts + 'px';
+                        
+                        if(this.position.includes('bottom')){
+                            bottomToast.style.top = 'auto';
+                            bottomToast.style.bottom = bottomToastPosition;
+                        } else {
+                            bottomToast.style.top = bottomToastPosition;
+                        }
+
+                        bottomToast.style.scale = '100%';
+                        bottomToast.style.transform = 'translateY(0px)';
+                    } else {
+                        bottomToast.style.scale = '88%';
+                        if(this.position.includes('bottom')){
+                            this.alignTop(top, bottomToast);
+                            bottomToast.style.transform = 'translateY(-32px)';
+                        } else {
+                            this.alignBottom(topToast, bottomToast);
+                            bottomToast.style.transform = 'translateY(32px)';
+                        }
+                    }
+
+                    if(this.toasts.length == 3) return;
+                    let burnToast = document.getElementById( this.toasts[3].id );
+                    burnToast.style.zIndex = 70;
+                    if(this.expanded){
+                        burnToastPosition = topToast.getBoundingClientRect().height + 
+                                                this.paddingBetweenToasts + 
+                                                middleToast.getBoundingClientRect().height + 
+                                                this.paddingBetweenToasts + 
+                                                bottomToast.getBoundingClientRect().height + 
+                                                this.paddingBetweenToasts + 'px';
+                        
+                        if(this.position.includes('bottom')){
+                            burnToast.style.top = 'auto';
+                            burnToast.style.bottom = burnToastPosition;
+                        } else {
+                            burnToast.style.top = burnToastPosition;
+                        }
+
+                        burnToast.style.scale = '100%';
+                        burnToast.style.transform = 'translateY(0px)';
+                    } else {
+                        burnToast.style.scale = '82%';
+                        this.alignBottom(topToast, burnToast);
+                        burnToast.style.transform = 'translateY(48px)';
+                    }
+
+                    burnToast.firstElementChild.classList.remove('opacity-100');
+                    burnToast.firstElementChild.classList.add('opacity-0');
+
+                    let that = this;
+                    // Burn 🔥 (remove) last toast
+                    setTimeout(function(){
+                            that.toasts.pop();
+                        }, 300);
+
+                    return;
+                },
+                alignBottom(element1, element2) {
+                    // Get the top position and height of the first element
+                    let top1 = element1.offsetTop;
+                    let height1 = element1.offsetHeight;
+
+                    // Get the height of the second element
+                    let height2 = element2.offsetHeight;
+
+                    // Calculate the top position for the second element
+                    let top2 = top1 + (height1 - height2);
+
+                    // Apply the calculated top position to the second element
+                    element2.style.top = top2 + 'px';
+                },
+                alignTop(element1, element2) {
+                    // Get the top position of the first element
+                    let top1 = element1.offsetTop;
+
+                    // Apply the same top position to the second element
+                    element2.style.top = top1 + 'px';
+                },
+                // alignTop(element1, element2) {
+                //     // Get the top position of both elements
+                //     let top1 = element1.offsetTop;
+                //     let top2 = element2.offsetTop;
+
+                //     // Get the height of both elements
+                //     let height1 = element1.offsetHeight;
+                //     let height2 = element2.offsetHeight;
+
+                //     // Calculate the bottom property for the second element
+                //     let bottom2 = top2 - top1 + (height2 - height1);
+
+                //     // Apply the calculated bottom property to the second element
+                //     element2.style.bottom = bottom2 + 'px';
+                // },
+                unstackToasts(){
+                    for(let i = 0; i < this.toasts.length; i++){
+                        if(document.getElementById( this.toasts[i].id )){
+                            let toastElement = document.getElementById( this.toasts[i].id );
+                            if(this.position.includes('bottom')){
+                                toastElement.style.bottom = '0px';
+                            } else {
+                                toastElement.style.top = '0px';
+                            }
+                        }
+                    }
+                },
+                getBottomPositionOfElement(el){
+                    return (el.getBoundingClientRect().height + el.getBoundingClientRect().top);
+                },
+                calculateHeightOfToastsContainer(){
+                    if(this.toasts.length == 0) return;
+
+                    lastToast = this.toasts[this.toasts.length - 1];
+                    lastToastRectangle = document.getElementById(lastToast.id).getBoundingClientRect();
+                    
+                    firstToast = this.toasts[0];
+                    firstToastRectangle = document.getElementById(firstToast.id).getBoundingClientRect();
+
+                    $el.style.height = firstToastRectangle.height + 'px';
+
+                    // if(this.position.includes('bottom')){
+                    //     if(this.expanded){
+                    //         $el.style.height = ((firstToastRectangle.top + firstToastRectangle.height) - lastToastRectangle.top) + 'px';
+                    //     }
+                        
+                        
+                    // } else {
+                    //     $el.style.height = lastToastRectangle.top + lastToastRectangle.height + 'px';
+                    // }
+                }
+            }"
+            @toast-show.window="
+                event.stopPropagation();
+                if(event.detail.data.position){
+                    // if(event.detail.data.position != position){
+                    //     toasts = [];
+                    // }
+                    position = event.detail.data.position;
+                    
+                }
+                toasts.unshift({
+                    id: 'toast-' + Math.random().toString(16).slice(2),
+                    show: false,
+                    message: event.detail.message,
+                    description: event.detail.description,
+                    type: event.detail.type,
+                    top: 0
+                });
+            "
+            @mouseover="toastsHovered=true;"
+            @mouseout="toastsHovered=false"
+            x-init="
+                if(layout == 'expanded'){
+                    expanded = true;
+                }
+                stackToasts();
+                calculateHeightOfToastsContainer();
+                $watch('toastsHovered', function(value){
+                    if(value){
+                        // calculate the new positions
+                        expanded = true;
+                        if(layout == 'default'){
+                            unstackToasts();
+                            stackToasts();
+                            setTimeout(function(){
+                                calculateHeightOfToastsContainer();
+                            }, 10);
+                        }
+                        
+                    } else {
+                        if(layout == 'default'){
+                            unstackToasts();
+                            calculateHeightOfToastsContainer();
+                            expanded = false;
+                        }
+                    }
+                });
+            "
+            class="fixed block w-full bg-pink-300 group z-[99] sm:max-w-xs"
+            :class="{ 'right-0 top-0 mt-6 mr-6': position=='top-right', 'left-0 top-0 mt-6 ml-6': position=='top-left', 'left-1/2 -translate-x-1/2 top-0 mt-6': position=='top-center', 'right-0 bottom-0 mr-6 mb-6': position=='bottom-right', 'left-0 bottom-0 ml-6 mb-6': position=='bottom-left', 'left-1/2 -translate-x-1/2 bottom-0 mb-6': position=='bottom-center' }"
+            x-cloak>
+        
+            <template x-for="(toast, index) in toasts" :key="toast.id">
+                <li
+                    :id="toast.id"
+                    x-data="{
+                        toastHovered: false
+                    }"
+                    x-init="
+                        
+                        if(position.includes('bottom')){
+                            $el.firstElementChild.classList.add('toast-bottom');
+                            $el.firstElementChild.classList.add('opacity-0', 'translate-y-full');
+                        } else {
+                            $el.firstElementChild.classList.add('opacity-0', '-translate-y-full');
+                        }
+                        setTimeout(function(){
+                            
+                            setTimeout(function(){
+                                if(position.includes('bottom')){
+                                    $el.firstElementChild.classList.remove('opacity-0', 'translate-y-full');
+                                } else {
+                                    $el.firstElementChild.classList.remove('opacity-0', '-translate-y-full');
+                                }
+                                $el.firstElementChild.classList.add('opacity-100', 'translate-y-0');
+
+                                setTimeout(function(){
+                                    stackToasts();
+                                    calculateHeightOfToastsContainer();
+                                }, 10);
+                            }, 5);
+                        }, 50);
+        
+                        setTimeout(function(){
+                            setTimeout(function(){
+                                $el.firstElementChild.classList.remove('opacity-100');
+                                $el.firstElementChild.classList.add('opacity-0');
+                                if(toasts.length == 1){
+                                    $el.firstElementChild.classList.remove('translate-y-0');
+                                    $el.firstElementChild.classList.add('-translate-y-full');
+                                }
+                                setTimeout(function(){
+                                    deleteToastWithId(toast.id)
+                                }, 300);
+                            }, 5);
+                        }, 400000); 
+                    "
+                    @mouseover="toastHovered=true"
+                    @mouseout="toastHovered=false"
+                    class="absolute w-full duration-300 ease-out select-none sm:max-w-xs"
+                    :class="{ 'toast-no-description': !toast.description }"
+                    >
+                    <span 
+                        class="relative flex flex-col items-start shadow-[0_5px_15px_-3px_rgb(0_0_0_/_0.08)] w-full p-4 transition-all duration-300 ease-out bg-white border border-gray-100 rounded-md sm:max-w-xs group"
+                    >
+                        <p class="text-[13px] font-medium leading-none text-gray-800" x-text="toast.message"></p>
+                        <p x-show="toast.description" class="mt-1.5 text-xs leading-none opacity-90" x-text="toast.description"></p>
+                        <span 
+                            @click="popToast(toast.id)"
+                            class="absolute right-0 p-1.5 mr-2.5 text-gray-400 duration-100 ease-in-out rounded-full opacity-0 cursor-pointer hover:bg-gray-50 hover:text-gray-500"
+                            :class="{ 'top-1/2 -translate-y-1/2' : !toast.description, 'top-0 mt-2.5' : toast.description, 'opacity-100' : toastHovered, 'opacity-0' : !toastHovered }"
+                        >
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </span>
+                    </span>
+                </li>
+            </template>
+        </ul>
+    </template>
+    <script>
+        toast = function(message, description = '', type = 'default', data = {}){
+            window.dispatchEvent(new CustomEvent('toast-show', { detail : { type: type, message: message, description: description, data : data }}));
+        }
+    </script>
+</div>
