@@ -1,23 +1,51 @@
 <div x-data
     class="relative w-auto h-auto">
-    <div class="relative space-y-5">
+    <div 
+        x-data="{ 
+            title: 'Default Toast Notification', 
+            description: '',
+            type: 'default',
+            position: 'top-center',
+            popToast (){
+                toast(this.title, { description: this.description, type: this.type, position: this.position })
+            }
+        }" class="relative space-y-5">
         <div class="relative">
-            <p class="text-xs font-medium mb-2 text-gray-500">Types</p>
+            <p class="mb-2 text-xs font-medium text-gray-500">Types</p>
             <div class="relative flex space-x-5">
-                <button @click="toast('Default Toast Notification')" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Default</button>
-                <button @click="toast('Toast Notification', 'This is an example notification with a description')" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">With Description</button>
+                <button @click="title='Default Toast Notification'; type='default'; description=''; popToast()" 
+                    :class="{ 'ring-2 ring-neutral-200/60' : type=='default' && description=='' }"
+                    class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Default</button>
+                <button @click="title='Toast Notification'; type='default'; description='This is an example toast notification'; popToast()" 
+                    :class="{ 'ring-2 ring-neutral-200/60' : type=='default' && description!='' }"
+                    class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">With Description</button>
+                <button @click="title='Success Notification'; type='success'; popToast()" 
+                    :class="{ 'ring-2 ring-neutral-200/60' : type=='success' }"
+                    class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Success</button>
             </div>
         </div>
         <div class="relative">
-            <p class="text-xs font-medium mb-2 text-gray-500">Position</p>
+            <p class="mb-2 text-xs font-medium text-gray-500">Position</p>
             <div class="relative flex space-x-5">
                 
-                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'top-left' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Top Left</button>
-                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'top-center' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Top Center</button>
-                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'top-right' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Top Right</button>
-                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'bottom-left' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Bottom Left</button>
-                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'bottom-center' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Bottom Center</button>
-                <button @click="toast('Toast', 'This is an example toast notification', 'default', { position: 'bottom-right' })" class="inline-flex items-center justify-center h-9 px-3 py-1 text-xs font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">Bottom Right</button>
+                <button @click="position='top-left'; popToast()"
+                        :class="{ 'ring-2 ring-neutral-200/60' : position=='top-left' }"
+                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Top Left</button>
+                <button @click="position='top-center'; popToast()" 
+                        :class="{ 'ring-2 ring-neutral-200/60' : position=='top-center' }"
+                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Top Center</button>
+                <button @click="position='top-right'; popToast()" 
+                        :class="{ 'ring-2 ring-neutral-200/60' : position=='top-right' }"
+                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Top Right</button>
+                <button @click="position='bottom-right'; popToast()" 
+                        :class="{ 'ring-2 ring-neutral-200/60' : position=='bottom-right' }"
+                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Bottom Right</button>
+                <button @click="position='bottom-center'; popToast()" 
+                        :class="{ 'ring-2 ring-neutral-200/60' : position=='bottom-center' }"
+                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Bottom Center</button>
+                <button @click="position='bottom-left'; popToast()" 
+                        :class="{ 'ring-2 ring-neutral-200/60' : position=='bottom-left' }"
+                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Bottom Left</button>
             </div>
         </div>
     </div>
@@ -234,11 +262,11 @@
             }"
             @toast-show.window="
                 event.stopPropagation();
-                if(event.detail.data.position){
+                if(event.detail.position){
                     // if(event.detail.data.position != position){
                     //     toasts = [];
                     // }
-                    position = event.detail.data.position;
+                    position = event.detail.position;
                     
                 }
                 toasts.unshift({
@@ -279,7 +307,7 @@
                     }
                 });
             "
-            class="fixed block w-full bg-pink-300 group z-[99] sm:max-w-xs"
+            class="fixed block w-full group z-[99] sm:max-w-xs"
             :class="{ 'right-0 top-0 mt-6 mr-6': position=='top-right', 'left-0 top-0 mt-6 ml-6': position=='top-left', 'left-1/2 -translate-x-1/2 top-0 mt-6': position=='top-center', 'right-0 bottom-0 mr-6 mb-6': position=='bottom-right', 'left-0 bottom-0 ml-6 mb-6': position=='bottom-left', 'left-1/2 -translate-x-1/2 bottom-0 mb-6': position=='bottom-center' }"
             x-cloak>
         
@@ -351,8 +379,15 @@
         </ul>
     </template>
     <script>
-        toast = function(message, description = '', type = 'default', data = {}){
-            window.dispatchEvent(new CustomEvent('toast-show', { detail : { type: type, message: message, description: description, data : data }}));
+        toast = function(message, options = {}){
+            let description = '';
+            let type = 'default';
+            let position = 'top-center';
+            if(typeof options.description != 'undefined') description = options.description;
+            if(typeof options.type != 'undefined') type = options.type;
+            if(typeof options.position != 'undefined') position = options.position;
+            
+            window.dispatchEvent(new CustomEvent('toast-show', { detail : { type: type, message: message, description: description, position : position }}));
         }
     </script>
 </div>
