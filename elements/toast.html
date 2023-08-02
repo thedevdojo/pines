@@ -157,7 +157,6 @@
                     }
                 },
                 stackToasts(){
-                    console.log('stacking...');
                     this.positionToasts();
                     this.calculateHeightOfToastsContainer();
                     let that = this;
@@ -179,7 +178,6 @@
                     }
 
                     let bottomPositionOfFirstToast = this.getBottomPositionOfElement(topToast);
-                    console.log(bottomPositionOfFirstToast);
 
                     if(this.toasts.length == 1) return;
                     let middleToast = document.getElementById( this.toasts[1].id );
@@ -279,8 +277,6 @@
                             middleToast.style.top = 'auto';
                     }
 
-                    console.log(middleToast.style.top);
-
                     return;
                 },
                 alignBottom(element1, element2) {
@@ -300,10 +296,6 @@
                 alignTop(element1, element2) {
                     // Get the top position of the first element
                     let top1 = element1.offsetTop;
-
-                    // if(top1 == 0 && this.position.includes('bottom')){
-                    //     top1 = 'auto';
-                    // }
 
                     // Apply the same top position to the second element
                     element2.style.top = top1 + 'px';
@@ -340,7 +332,6 @@
                     firstToastRectangle = document.getElementById(firstToast.id).getBoundingClientRect();
 
                     if(this.toastsHovered){
-                        console.log( lastToastRectangle.top  );
                         if(this.position.includes('bottom')){
                             $el.style.height = ((firstToastRectangle.top + firstToastRectangle.height) - lastToastRectangle.top) + 'px';
                         } else {
@@ -352,7 +343,6 @@
                 }
             }"
             @set-toasts-layout.window="
-            console.log(event.detail);
                 layout=event.detail.layout;
                 if(layout == 'expanded'){
                     expanded=true;
@@ -383,7 +373,6 @@
                 }
                 stackToasts();
                 $watch('toastsHovered', function(value){
-                    console.log('hovered value: ' + value);
 
                     if(layout == 'default'){
                         if(position.includes('bottom')){
@@ -458,7 +447,7 @@
                                     deleteToastWithId(toast.id)
                                 }, 300);
                             }, 5);
-                        }, 400000); 
+                        }, 4000); 
                     "
                     @mouseover="toastHovered=true"
                     @mouseout="toastHovered=false"
