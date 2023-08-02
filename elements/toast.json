@@ -1,0 +1,30 @@
+{
+    "data" : {
+        "toasts[]" : "An array of toast objects (see toast object below)",
+        "toastsHovered": "When the toasts are hovered, this will be sent to true.",
+        "expanded" : "A boolean value that indicates whether or not the toasts are expanded",
+        "layout" : "You can choose the 'default' layout or have them 'expanded' by default",
+        "position": "The position of the toast notifications",
+        "paddingBetweenToasts": "When expanded the padding to add between the toasts",
+        "deleteToastWithId(id)": "Delete a toast with the given id",
+        "burnToast(id)": "This method will add the exit animation to the last toast and delete it",
+        "getToastWithId(id)": "Get the toast with the given id",
+        "stackToasts()" : "Stack the toasts on top of each other",
+        "positionToasts()" : "Position the toasts based on their index and the current layout",
+        "alignBottom()" : "Align element2 to be at the bottom of element1",
+        "alignTop()" : "Align element2 to be at the top of element1",
+        "resetBottom()" : "Reset all toasts to bottom of 0px",
+        "resetTop()" : "Reset all toasts to top of 0px",
+        "getBottomPositionOfElement(el)": "Get the bottom position of the given element",
+        "calculateHeightOfToastsContainer()": "Calculate the height of the toasts container",
+        "@set-toasts-layout.window": "This is an event listener to change the layout of the toasts",
+        "@toast-show.window": "This is an event listener to show a toast notification"
+    },
+    "alert_notification" : {
+        "title" : "Usage",
+        "description" : "<p>Copy the code from inside the <strong><code>&lt;template x-teleport=\"body\"&gt;..&lt;/template&gt;</code></strong> tags and add it to your project. You may want to add the <strong>window.toast</strong> global function to your site to make it easily pop a <strong>toast('Message')</strong>. This global function is located inside the <strong>x-init</strong> method on the root element.</p>"
+    },
+    "additional" : {
+        "description" : "Here is the default structure of a toast object: <ul><li><strong>id</strong> - Unique ID for the toast</li><li><strong>show</strong> - a boolean value to show or hide the toast</li><li><strong>message</strong> - The title message of the toast</li><li><strong>description</strong> - The description text for the toast</li><li><strong>type</strong> - The type of the toast (default, success, info, warning, danger)</li><li><strong>html</strong> - Custom HTML to be used inside of the toast</li></ul><p>When using the <strong>toast()</strong> global function you can create a simple toast with the following syntax: <strong>toast('Message')</strong> or you can pass in an object to create a more complex toast: <strong>toast('Message', {type: 'success', description: 'short description', position: 'top-right', html: ''})</strong></p>"
+    }
+}

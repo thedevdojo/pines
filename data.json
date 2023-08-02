@@ -76,7 +76,7 @@
         "textarea-auto-resize" : "A textarea form input element that automatically resizes to fit the content.",
         "text-animation" : "Simple text animation elements.",
         "text-input" : "A form input element that can be used to collect user input.",
-        "toast": "A toast notification that can be used to show a message.",
+        "toast": "A toast notification that can be used to show a message. Click a button below to show the toast notification.",
         "tooltip": "A simple tooltip element that can be used to show additional information.",
         "typing-effect" : "This is an element that can be used to type text on to the screen.",
         "video" : "A customized video element that can be used to display a video."
