@@ -48,26 +48,26 @@
             <div class="relative flex space-x-5">
                 <button @click="title='Default Toast Notification'; type='default'; description=''; popToast()" 
                     :class="{ 'ring-2 ring-neutral-200/60' : type=='default' && description=='' }"
-                    class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Default</button>
+                    class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Default</button>
                 <button @click="title='Toast Notification'; type='default'; description='This is an example toast notification'; popToast()" 
                     :class="{ 'ring-2 ring-neutral-200/60' : type=='default' && description!='' }"
-                    class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">With Description</button>
+                    class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">With Description</button>
                 <button @click="title='Success Notification'; type='success'; popToast()" 
                     :class="{ 'ring-2 ring-neutral-200/60' : type=='success' }"
-                    class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Success</button>
+                    class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Success</button>
                 <button @click="title='Info Notification'; type='info'; popToast()" 
                     :class="{ 'ring-2 ring-neutral-200/60' : type=='info' }"
-                    class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Info</button>
+                    class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Info</button>
                 <button @click="title='Warning Notification'; type='warning'; popToast()" 
                     :class="{ 'ring-2 ring-neutral-200/60' : type=='warning' }"
-                    class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Warning</button>
+                    class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Warning</button>
                 <button @click="title='Danger Notification'; type='danger'; popToast()" 
                     :class="{ 'ring-2 ring-neutral-200/60' : type=='danger' }"
-                    class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Danger</button>
+                    class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Danger</button>
 
                 <button @click="popToast(customToastHTML)" 
                         :class="{ 'ring-2 ring-neutral-200/60' : type=='success' }"
-                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Custom</button>
+                        class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Custom</button>
             </div>
         </div>
         <div class="relative">
@@ -76,22 +76,22 @@
                 
                 <button @click="position='top-left'; popToast()"
                         :class="{ 'ring-2 ring-neutral-200/60' : position=='top-left' }"
-                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Top Left</button>
+                        class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Top Left</button>
                 <button @click="position='top-center'; popToast()"
                         :class="{ 'ring-2 ring-neutral-200/60' : position=='top-center' }"
-                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Top Center</button>
+                        class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Top Center</button>
                 <button @click="position='top-right'; popToast()"
                         :class="{ 'ring-2 ring-neutral-200/60' : position=='top-right' }"
-                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Top Right</button>
+                        class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Top Right</button>
                 <button @click="position='bottom-right'; popToast()"
                         :class="{ 'ring-2 ring-neutral-200/60' : position=='bottom-right' }"
-                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Bottom Right</button>
+                        class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Bottom Right</button>
                 <button @click="position='bottom-center'; popToast()"
                         :class="{ 'ring-2 ring-neutral-200/60' : position=='bottom-center' }"
-                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Bottom Center</button>
+                        class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Bottom Center</button>
                 <button @click="position='bottom-left'; popToast()"
                         :class="{ 'ring-2 ring-neutral-200/60' : position=='bottom-left' }"
-                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Bottom Left</button>
+                        class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Bottom Left</button>
             </div>
         </div>
         <div class="relative">
@@ -99,10 +99,10 @@
             <div class="relative flex space-x-5">
                 <button @click="expanded=false; window.dispatchEvent(new CustomEvent('set-toasts-layout', { detail: { layout: 'default' }}));"
                         :class="{ 'ring-2 ring-neutral-200/60' : !expanded }"
-                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Default</button>
+                        class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Default</button>
                 <button @click="expanded=true; window.dispatchEvent(new CustomEvent('set-toasts-layout', { detail: { layout: 'expanded' }}));" 
                         :class="{ 'ring-2 ring-neutral-200/60' : expanded }"
-                        class="inline-flex items-center justify-center px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Expanded</button>
+                        class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Expanded</button>
             </div>
         </div>
     </div>
@@ -402,7 +402,7 @@
                 });
             "
             class="fixed block w-full group z-[99] sm:max-w-xs"
-            :class="{ 'right-0 top-0 mt-6 mr-6': position=='top-right', 'left-0 top-0 mt-6 ml-6': position=='top-left', 'left-1/2 -translate-x-1/2 top-0 mt-6': position=='top-center', 'right-0 bottom-0 mr-6 mb-6': position=='bottom-right', 'left-0 bottom-0 ml-6 mb-6': position=='bottom-left', 'left-1/2 -translate-x-1/2 bottom-0 mb-6': position=='bottom-center' }"
+            :class="{ 'right-0 top-0 sm:mt-6 sm:mr-6': position=='top-right', 'left-0 top-0 sm:mt-6 sm:ml-6': position=='top-left', 'left-1/2 -translate-x-1/2 top-0 sm:mt-6': position=='top-center', 'right-0 bottom-0 sm:mr-6 sm:mb-6': position=='bottom-right', 'left-0 bottom-0 sm:ml-6 sm:mb-6': position=='bottom-left', 'left-1/2 -translate-x-1/2 bottom-0 sm:mb-6': position=='bottom-center' }"
             x-cloak>
         
             <template x-for="(toast, index) in toasts" :key="toast.id">
@@ -455,7 +455,7 @@
                     :class="{ 'toast-no-description': !toast.description }"
                     >
                     <span 
-                        class="relative flex flex-col items-start shadow-[0_5px_15px_-3px_rgb(0_0_0_/_0.08)] w-full transition-all duration-300 ease-out bg-white border border-gray-100 rounded-md sm:max-w-xs group"
+                        class="relative flex flex-col items-start shadow-[0_5px_15px_-3px_rgb(0_0_0_/_0.08)] w-full transition-all duration-300 ease-out bg-white border border-gray-100 sm:rounded-md sm:max-w-xs group"
                         :class="{ 'p-4' : !toast.html, 'p-0' : toast.html }"
                     >
                         <template x-if="!toast.html">

@@ -117,7 +117,7 @@
         "textarea-auto-resize" : "w-full py-10 px-48 box-border flex items-center justify-center",
         "text-animation" : "w-full py-10 box-border flex items-center justify-center",
         "text-input" : "w-full py-10 px-48 box-border flex items-center justify-center",
-        "toast" : "w-full sm:p-10 p-4 box-border flex items-center justify-center",
+        "toast" : "w-full sm:p-10 p-4 box-border flex items-center overflow-scroll justify-center",
         "tooltip" : "w-full sm:p-10 p-4 box-border flex items-center justify-center",
         "typing-effect" : "w-full sm:p-10 p-4 flex items-center justify-center",
         "video" : "py-10 w-[640px] mx-auto box-border flex items-center justify-center"
