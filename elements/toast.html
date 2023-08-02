@@ -44,8 +44,8 @@
         "
         class="relative space-y-5">
         <div class="relative">
-            <p class="mb-2 text-xs font-medium text-gray-500">Types</p>
-            <div class="relative flex space-x-5">
+            <p class="mb-2 text-xs font-medium text-center text-gray-500 sm:text-left">Types</p>
+            <div class="relative flex flex-col px-10 space-y-2 sm:space-x-5 sm:space-y-0 sm:flex-row sm:px-0">
                 <button @click="title='Default Toast Notification'; type='default'; description=''; popToast()" 
                     :class="{ 'ring-2 ring-neutral-200/60' : type=='default' && description=='' }"
                     class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Default</button>
@@ -71,8 +71,8 @@
             </div>
         </div>
         <div class="relative">
-            <p class="mb-2 text-xs font-medium text-gray-500">Position</p>
-            <div class="relative flex space-x-5">
+            <p class="mb-2 text-xs font-medium text-center text-gray-500 sm:text-left">Position</p>
+            <div class="relative flex flex-col px-10 space-y-2 sm:space-x-5 sm:space-y-0 sm:flex-row sm:px-0">
                 
                 <button @click="position='top-left'; popToast()"
                         :class="{ 'ring-2 ring-neutral-200/60' : position=='top-left' }"
@@ -95,8 +95,8 @@
             </div>
         </div>
         <div class="relative">
-            <p class="mb-2 text-xs font-medium text-gray-500">Layout</p>
-            <div class="relative flex space-x-5">
+            <p class="mb-2 text-xs font-medium text-center text-gray-500 sm:text-left">Layout</p>
+            <div class="relative flex flex-col px-10 space-y-2 sm:space-x-5 sm:space-y-0 sm:flex-row sm:px-0">
                 <button @click="expanded=false; window.dispatchEvent(new CustomEvent('set-toasts-layout', { detail: { layout: 'default' }}));"
                         :class="{ 'ring-2 ring-neutral-200/60' : !expanded }"
                         class="inline-flex items-center justify-center flex-shrink-0 px-3 py-1 text-xs font-medium transition-colors border rounded-md h-9 hover:bg-gray-50 active:bg-white focus:bg-white focus:outline-none">Default</button>
