@@ -2,6 +2,48 @@
         imageGalleryOpened: false,
         imageGalleryActiveUrl: null,
         imageGalleryImageIndex: null,
+        imageGallery: [
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-01.jpeg',
+                'alt': 'Photo of Mountains'
+            },
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-02.jpeg',
+                'alt': 'Photo of Mountains 02'
+            },
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-03.jpeg',
+                'alt': 'Photo of Mountains 03'
+            },
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-04.jpeg',
+                'alt': 'Photo of Mountains 04'
+            },
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-05.jpeg',
+                'alt': 'Photo of Mountains 05'
+            },
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-06.jpeg',
+                'alt': 'Photo of Mountains 06'
+            },
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-07.jpeg',
+                'alt': 'Photo of Mountains 07'
+            },
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-08.jpeg',
+                'alt': 'Photo of Mountains 08'
+            },
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-09.jpeg',
+                'alt': 'Photo of Mountains 09'
+            },
+            {
+                'photo': 'https://cdn.devdojo.com/images/june2023/mountains-10.jpeg',
+                'alt': 'Photo of Mountains 10'
+            }
+        ],
         imageGalleryOpen(event) {
             this.imageGalleryImageIndex = event.target.dataset.index;
             this.imageGalleryActiveUrl = event.target.src;
@@ -12,20 +54,11 @@
             setTimeout(() => this.imageGalleryActiveUrl = null, 300);
         },
         imageGalleryNext(){
-            if(this.imageGalleryImageIndex == this.$refs.gallery.childElementCount){
-                this.imageGalleryImageIndex = 1;
-            } else {
-                this.imageGalleryImageIndex = parseInt(this.imageGalleryImageIndex) + 1;
-            }
+            this.imageGalleryImageIndex = (this.imageGalleryImageIndex == this.imageGallery.length) ? 1 : (parseInt(this.imageGalleryImageIndex) + 1);
             this.imageGalleryActiveUrl = this.$refs.gallery.querySelector('[data-index=\'' + this.imageGalleryImageIndex + '\']').src;
         },
         imageGalleryPrev() {
-            if(this.imageGalleryImageIndex == 1){
-                this.imageGalleryImageIndex = this.$refs.gallery.childElementCount;
-            } else {
-                this.imageGalleryImageIndex = parseInt(this.imageGalleryImageIndex) - 1;
-            }
-
+            this.imageGalleryImageIndex = (this.imageGalleryImageIndex == 1) ? this.imageGallery.length : (parseInt(this.imageGalleryImageIndex) - 1);
             this.imageGalleryActiveUrl = this.$refs.gallery.querySelector('[data-index=\'' + this.imageGalleryImageIndex + '\']').src;
             
         }
@@ -34,25 +67,12 @@
     @image-gallery-prev.window="imageGalleryPrev()" 
     @keyup.right.window="imageGalleryNext();" 
     @keyup.left.window="imageGalleryPrev();"
-    x-init="
-        imageGalleryPhotos = $refs.gallery.querySelectorAll('img');
-        for(let i=0; i<imageGalleryPhotos.length; i++){
-            imageGalleryPhotos[i].setAttribute('data-index', i+1);
-        }
-    " 
     class="w-full h-full select-none">
     <div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
         <ul x-ref="gallery" id="gallery" class="grid grid-cols-2 gap-5 lg:grid-cols-5">
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-01.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 01"></li>
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-02.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 02"></li>
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-03.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 03"></li>
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-04.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 04"></li>
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-05.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 05"></li>
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-06.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 06"></li>
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-07.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 07"></li>
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-08.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 08"></li>
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-09.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 09"></li>
-            <li><img x-on:click="imageGalleryOpen" src="https://cdn.devdojo.com/images/june2023/mountains-10.jpeg" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]" alt="photo gallery image 10"></li>
+            <template x-for="(image, index) in imageGallery">
+                <li><img x-on:click="imageGalleryOpen" :src="image.photo" :alt="image.alt" :data-index="index+1" class="object-cover select-none w-full h-auto bg-gray-200 rounded cursor-zoom-in aspect-[5/6] lg:aspect-[2/3] xl:aspect-[3/4]"></li>
+            </template>
         </ul>
     </div>
     <template x-teleport="body">
