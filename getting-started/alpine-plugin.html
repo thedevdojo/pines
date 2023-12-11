@@ -60,7 +60,7 @@
                 }
             }
 
-            if(!elementPosition.includes(['relative', 'absolute', 'fixed'])){
+            if(!['relative', 'absolute', 'fixed'].includes(elementPosition)){
                 el.style.position='relative';
             }
             
@@ -159,7 +159,7 @@ let elementPosition = getComputedStyle(el).position;</code></pre>
 
 <p class="text-gray-500">The reason that we stored the <strong>elementPosition</strong> above is because our tooltip has an <i class="text-black">absolute</i> value, in order for the <i class="text-black">absolute</i> position to work, the parent element position must be <i class="text-black">relative</i>, <i class="text-black">absolute</i>, or <i class="text-black">fixed</i>. If it is none of those we will set the position to <i class="text-black">relative</i>:</p>
 
-<pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">if(!elementPosition.includes(['relative', 'absolute', 'fixed'])){
+<pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">if(!['relative', 'absolute', 'fixed'].includes(elementPosition)){
     el.style.position='relative';
 }</code></pre>
 
