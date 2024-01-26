@@ -107,11 +107,11 @@
             }, this.autoHideControlsDelay);
         },
         formatTime(timeInSeconds) {
-            result = new Date(timeInSeconds * 1000).toISOString().substr(11, 8);
+            result = new Date(timeInSeconds * 1000).toISOString().substring(11, 19);
 
             return {
-                minutes: result.substr(3, 2),
-                seconds: result.substr(6, 2),
+                minutes: result.substring(3, 5),
+                seconds: result.substring(6, 8),
             };
         }
     }"
