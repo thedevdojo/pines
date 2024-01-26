@@ -8,8 +8,5 @@
     "alert_notification" : {
         "title" : "Create a Tooltip Plugin",
         "description" : "This specific element would be easier to re-use in your applications if it were converted into its own plugin. Here's a guide that will show you how to <a href=\"/pines/docs/alpine-plugin\" class=\"underline\">convert this element into it's own plugin</a>."
-    },
-    "additional" : {
-        "description" : "<p>Each tab button needs to contain the following attributes <strong>:id=\"$id(tabId)\" @click=\"tabButtonClicked($el)\"</strong>. Each button will sequentially show or hide any content element with the following attributes <strong>:id=\"$id(tabId + '-content')\" x-show=\"tabContentActive($el)\"</strong>. See example one below for a simple demo of this functionality.</p>"
     }
 }

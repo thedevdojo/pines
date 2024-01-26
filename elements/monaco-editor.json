@@ -2,7 +2,7 @@
     "data" : {
         "monacoContent" : "The initial value inside of the editor",
         "monacoLanguage" : "The language that should be used for syntax highlighting",
-        "monacoPlaceholder" : "Sepcify whether or not you want a placeholder in the editor when there is not code in the editor",
+        "monacoPlaceholder" : "Specify whether or not you want a placeholder in the editor when there is not code in the editor",
         "monacoPlaceholderText" : "The placeholder text to be used inside of the editor when no code is present",
         "monacoLoader" : "This is used to show a loading indicator before the editor has been initialized and ready",
         "monacoFontSize" : "The font size to be used inside of the editor (may need to adjust the placeholder when changing this)",

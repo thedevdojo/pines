@@ -4,7 +4,7 @@
 
 <p class="text-gray-500">Creating an Alpine Plugin is very simple and will allow you to create re-usable components. Alpine has some great documentation on <a href="https://alpinejs.dev/advanced/extending" target="_blank">extending functionality into your own plugin</a>; however, it will be beneficial to give you a specific example. 
     
-<p class="text-gray-500">Lets learn how to extract the <a href="/pines/docs/tooltip" @click="activeMenuItem = 'tooltip'; loadPage($event)" @mouseenter="fetchPage($event)">tooltip</a> element so that it can be used as a custom Alpine directive, like so:</p>
+<p class="text-gray-500">Let's learn how to extract the <a href="/pines/docs/tooltip" @click="activeMenuItem = 'tooltip'; loadPage($event)" @mouseenter="fetchPage($event)">tooltip</a> element so that it can be used as a custom Alpine directive, like so:</p>
 
 <pre class="block w-full overflow-scroll text-sm border rounded-md hljs"><code class="hljs html">&#x3C;div x-data x-tooltip=&#x22;Your tooltip text here&#x22;&#x3E;
     hover me
@@ -40,7 +40,7 @@
     <div class="text-sm">First we will show you the final plugin code and then we will dissect it to show you how it works.</div>
 </div>
 
-<p class="text-gray-500">To make this tooltip functionality re-useable we could extract it into its own plugin, like so:</p>
+<p class="text-gray-500">To make this tooltip functionality re-usable we could extract it into its own plugin, like so:</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code id="plugin-example" class="hljs html">&#x3C;script&#x3E;
     document.addEventListener('alpine:init', () => {
@@ -49,7 +49,7 @@
             let tooltipText = expression;
             let tooltipArrow = modifiers.includes('noarrow') ? false : true;
             let tooltipPosition = 'top';
-            let tooltipId = 'tooltip-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+            let tooltipId = 'tooltip-' + Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
             let positions = ['top', 'bottom', 'left', 'right'];
             let elementPosition = getComputedStyle(el).position;
 
@@ -98,7 +98,7 @@
 
 &#x3C;/script&#x3E;
 
-&#x3C;!-- Then, include a tooltip anwhere in your code --&#x3E;
+&#x3C;!-- Then, include a tooltip anywhere in your code --&#x3E;
 &#x3C;div class=&#x22;w-screen h-screen flex items-center justify-center&#x22;&#x3E;
     &#x3C;div x-data x-tooltip.top=&#x22;hello&#x22;&#x3E;
         hover me
@@ -133,7 +133,7 @@ let tooltipArrow = modifiers.includes('noarrow') ? false : true;
 // The default tooltip position will be set to 'top'
 let tooltipPosition = 'top';
 // We need to create a dynamic ID so that way we can reference the tooltip element when we want to add or remove it
-let tooltipId = 'tooltip-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+let tooltipId = 'tooltip-' + Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
 // These are all the possible positions for the tooltip
 let positions = ['top', 'bottom', 'left', 'right'];
 // We need to check the position of the element that the tooltip is attached to, we'll use this variable in a following step
@@ -211,6 +211,7 @@ el.addEventListener('mouseleave', mouseLeave);</code></pre>
 
 <h3>Why not create Pines as a separate library</h3>
 
-<p class="text-gray-500">We wanted to build a set of UI elements that are highly customizable and flexible. These elements will allow developers to easily integrate them with any <a href="https://tallstack.dev" target="_blank">Tallstack</a> application. If the demand is high enough, we may strongly consider converting Pines into it's own external library.</p>
+<p class="text-gray-500">We wanted to build a set of UI elements that are highly customizable and flexible. These elements will allow developers to easily integrate them with any <a href="https://tallstack.dev" target="_blank">Tallstack</a> application. If the demand is high enough, we may strongly consider converting Pines into its own external library.</p>
 
-<p class="text-gray-500">Be sure to let us know your thoughts, give us a <a href="https://github.com/thedevdojo/pines" target="_blank">Star on Github</a>, and consider <a href="/pines/docs/contribution" @click="activeMenuItem = 'contribution'; loadPage($event)">contributing</a> to help steer the direction of this project.</p>
+<p class="text-gray-500">Be sure to let us know your thoughts, give us a <a href="https://github.com/thedevdojo/pines" target="_blank">Star on GitHub</a>, and consider <a href="/pines/docs/contribution" @click="activeMenuItem = 'contribution'; loadPage($event)">contributing</a> to help steer the direction of this project.</p>
+
