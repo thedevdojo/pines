@@ -49,7 +49,7 @@
             let tooltipText = expression;
             let tooltipArrow = modifiers.includes('noarrow') ? false : true;
             let tooltipPosition = 'top';
-            let tooltipId = 'tooltip-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+            let tooltipId = 'tooltip-' + Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
             let positions = ['top', 'bottom', 'left', 'right'];
             let elementPosition = getComputedStyle(el).position;
 
@@ -133,7 +133,7 @@ let tooltipArrow = modifiers.includes('noarrow') ? false : true;
 // The default tooltip position will be set to 'top'
 let tooltipPosition = 'top';
 // We need to create a dynamic ID so that way we can reference the tooltip element when we want to add or remove it
-let tooltipId = 'tooltip-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+let tooltipId = 'tooltip-' + Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
 // These are all the possible positions for the tooltip
 let positions = ['top', 'bottom', 'left', 'right'];
 // We need to check the position of the element that the tooltip is attached to, we'll use this variable in a following step
