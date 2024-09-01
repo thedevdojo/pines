@@ -1,0 +1,91 @@
+<div class="flex flex-col w-full h-full">
+    <div x-data x-init="
+            $nextTick(() => {
+                $refs.content.appendChild($refs.item.cloneNode(true));
+            });
+        " 
+        class="w-full overflow-hidden text-lg italic tracking-wide text-white uppercase bg-gray-900 sm:text-xs md:text-sm lg:text-base xl:text-xl"
+        >
+        <div class="relative w-full mx-auto overflow-hidden max-w-7xl">
+            <div class="absolute left-0 z-20 w-40 h-full bg-gradient-to-r from-gray-900 to-transparent"></div>
+            <div class="absolute right-0 z-20 w-40 h-full bg-gradient-to-l from-gray-900 to-transparent"></div>
+            <div x-ref="content" class="flex animate-marquee">
+                <div x-ref="item" class="flex items-center justify-center flex-shrink-0 w-full py-2 space-x-2 container-block-02">
+                    <div>This is a <span class="hidden sm:inline">Tailwind CSS and Alpine.js</span> continuous marquee example</div>
+                    <div class="hidden sm:inline two">It scrolls infinitely</div>
+                    <div class="hidden lg:inline three">Without any gaps</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div x-data x-init="
+            $nextTick(() => {
+                $refs.content.appendChild($refs.item.cloneNode(true));
+            });
+        " 
+        class="w-full overflow-hidden text-lg italic tracking-wide text-white uppercase bg-gray-900 sm:text-xs md:text-sm lg:text-base xl:text-xl"
+        >
+        <div class="relative w-full mx-auto overflow-hidden max-w-7xl">
+            <div class="absolute left-0 z-20 w-40 h-full bg-gradient-to-r from-gray-900 to-transparent"></div>
+            <div class="absolute right-0 z-20 w-40 h-full bg-gradient-to-l from-gray-900 to-transparent"></div>
+            <div x-ref="content" class="flex animate-marquee-reverse">
+                <div x-ref="item" class="flex items-center justify-center flex-shrink-0 w-full py-2 space-x-2 container-block-02">
+                    <div>This is a <span class="hidden sm:inline">Tailwind CSS and Alpine.js</span> continuous marquee example</div>
+                    <div class="hidden sm:inline two">It scrolls infinitely</div>
+                    <div class="hidden lg:inline three">Without any gaps</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /*
+     *  This is the marquee animation styles. 
+     *  Instead of adding this CSS you may wish to implement in your tailwind config. 
+     *  Learn more in the marquee Tailwind Config section
+     */
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+    @keyframes marquee-reverse {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+    .animate-marquee {
+        animation: marquee 20s linear infinite;
+    }
+    .animate-marquee-reverse {
+        animation: marquee-reverse 20s linear infinite;
+    }
+</style>
+
+<style>
+    /*
+     *  This is a container query used for the demo that does not need to be included
+     */
+    .container-block-02 {
+        container-type: inline-size;
+    }
+    @container (max-width: 1100px) {
+        .container-block-02 *:nth-child(2),
+        .container-block-02 *:nth-child(3) {
+            display: none;
+        }
+    }
+    
+    @container (max-width: 1100px) {
+        .container-block-02 > div{
+            font-size:12px !important;
+        }
+    }
+</style>

@@ -1,0 +1,26 @@
+<div class="mt-5 text-sm">
+    <h3 class="mt-2 mb-2 text-2xl font-bold tracking-tight select-none custom-font">Tailwind Config</h3>
+    <p class="text-gray-600">To implement the `animate-marquee` class from your tailwind config, add the code below to your tailwind.config.js</p>
+    <pre class="!p-5 text-xs mt-3 border border-gray-200 rounded-lg " style="padding:15px"><code>module.exports = {
+    theme: {
+        extend: {
+            // Add custom keyframes
+            keyframes: {
+                marquee: {
+                    '0%': {
+                        transform: 'translateX(0)'
+                    },
+                    '100%': {
+                        transform: 'translateX(-100%)'
+                    },
+                },
+            },
+            // Add custom animations
+            animation: {
+                'marquee': 'marquee 20s linear infinite',
+            },
+        },
+    },
+    plugins: [],
+}</code></pre>
+</div>

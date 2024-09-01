@@ -1,0 +1,6 @@
+{
+    "alert_notification" : {
+        "title" : "Custom CSS",
+        "description" : "This element uses some custom CSS. If you wish to include the `marquee` animation in your tailwind.config.js, use the config from the code below."
+    }
+}

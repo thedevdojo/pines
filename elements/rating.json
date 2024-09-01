@@ -1,0 +1,12 @@
+{
+    "data" : {
+        "disabled" : "Indicates whether the rating functionality is disabled. If true, user interactions are ignored.",
+        "max_stars" : "The maximum number of stars available for rating.",
+        "stars": "The current number of stars selected by the user during the rating process.",
+        "value" : "The final rating value that is set when the user clicks on a star.",
+        "hoverStar(star)" : "Updates the stars property to reflect the star being hovered, unless the rating is disabled.",
+        "mouseLeftStar()" : "Resets the stars to the current value during mouseleave event, unless the rating is disabled.",
+        "rate(star)" : "Sets the stars and value to the selected star when clicked, and shows a temporary rating message.",
+        "reset()" : "Resets both stars and value to 0, allowing the user to start the rating process over."
+    }
+}
