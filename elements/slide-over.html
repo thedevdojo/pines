@@ -14,7 +14,7 @@
                     <div class="fixed inset-y-0 right-0 flex max-w-full pl-10">
                         <div 
                             x-show="slideOverOpen" 
-                            @click.away="slideOverOpen = false"
+                            @click.outside="slideOverOpen = false"
                             x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700" 
                             x-transition:enter-start="translate-x-full" 
                             x-transition:enter-end="translate-x-0" 

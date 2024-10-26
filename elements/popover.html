@@ -43,7 +43,7 @@
         x-show="popoverOpen"
         x-init="setTimeout(function(){ popoverHeightCalculate(); }, 100);"
         x-trap.inert="popoverOpen"
-        @click.away="popoverOpen=false;"
+        @click.outside="popoverOpen=false;"
         @keydown.escape.window="popoverOpen=false"
         :class="{ 'top-0 mt-12' : popoverPosition == 'bottom', 'bottom-0 mb-12' : popoverPosition == 'top' }"
         class="absolute w-[300px] max-w-lg -translate-x-1/2 left-1/2" x-cloak>

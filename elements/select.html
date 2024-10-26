@@ -169,7 +169,7 @@
 
     <ul x-show="selectOpen"
         x-ref="selectableItemsList"
-        @click.away="selectOpen = false"
+        @click.outside="selectOpen = false"
         x-transition:enter="transition ease-out duration-50"
         x-transition:enter-start="opacity-0 -translate-y-1"
         x-transition:enter-end="opacity-100"
