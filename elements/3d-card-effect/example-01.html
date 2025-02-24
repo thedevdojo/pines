@@ -1,0 +1,73 @@
+<style>
+    /* 3D Perspective */
+    .card-container {
+        perspective: 1000px;
+    }
+
+    /* Base Card */
+    .card {
+        transform-style: preserve-3d;
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+
+    /* Floating Effect on Hover */
+    .card:hover {
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Floating Elements */
+    .pop-out {
+        transition: transform 0.5s ease-out;
+    }
+</style>
+<div class="card-container perspective-[1000px]" x-data="{ rotateX: 0, rotateY: 0, popEffect: false }">
+    <div 
+        class="card bg-white dark:bg-black border border-gray-200 dark:border-white/[0.2] w-80 sm:w-96 h-auto rounded-xl p-6 relative"
+        @mousemove="rotateY = ($event.clientX - $el.getBoundingClientRect().left) / $el.offsetWidth * 30 - 15; 
+                    rotateX = -($event.clientY - $el.getBoundingClientRect().top) / $el.offsetHeight * 30 + 15;
+                    popEffect = true;"
+        @mouseleave="rotateX = 0; rotateY = 0; popEffect = false;"
+        x-bind:style="'transform: rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg);'"
+    >
+        <!-- Floating Text -->
+        <h2 
+            class="text-xl font-bold text-neutral-600 dark:text-white pop-out"
+            x-bind:style="popEffect ? 'transform: translateZ(40px);' : 'transform: translateZ(0px);'"
+        >
+            Make things float in air
+        </h2>
+
+        <p 
+            class="text-neutral-500 text-sm mt-2 dark:text-neutral-300 pop-out"
+            x-bind:style="popEffect ? 'transform: translateZ(35px);' : 'transform: translateZ(0px);'"
+        >
+            Hover over this card to unleash the power of CSS perspective
+        </p>
+
+        <!-- Floating Image -->
+        <div  x-bind:style="popEffect ? 'transform: translateZ(50px);' : 'transform: translateZ(0px);'" class="mt-4 pop-out">
+            <img 
+                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                class="w-full h-60 object-cover rounded-xl pop-out"
+                alt="thumbnail"
+            />
+        </div>
+
+        <div class="flex justify-between items-center mt-6">
+            <a 
+                href="" 
+                target="__blank"
+                class="px-4 py-2 rounded-xl text-xs font-normal dark:text-white pop-out"
+                x-bind:style="popEffect ? 'transform: translateZ(20px);' : 'transform: translateZ(0px);'"
+            >
+                Try now →
+            </a>
+            <button 
+                class="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold pop-out"
+                x-bind:style="popEffect ? 'transform: translateZ(20px);' : 'transform: translateZ(0px);'"
+            >
+                Sign up
+            </button>
+        </div>
+    </div>
+</div>
