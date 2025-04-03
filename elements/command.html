@@ -1,4 +1,5 @@
-<div x-data="{
+<div
+    x-data="{
         commandItems: {
             suggestions : [
                 {
@@ -119,7 +120,8 @@
                 }
             });
         }
-    }" x-init="
+    }"
+    x-init="
         commandItemsReorganize();
         commandSearchItems();
         $watch('commandSearch', value => commandSearchItems());
@@ -128,15 +130,49 @@
                 console.log('item:', item);
             }
         });
-    " 
-    @keydown.down="event.preventDefault(); commandItemActiveNext();" 
-    @keydown.up="event.preventDefault(); commandItemActivePrevious()" 
-    @keydown.enter="commandItemSelected=commandItemActive;" 
-    class="flex min-h-[370px] justify-center w-full max-w-xl items-start" x-cloak>
+    "
+    @keydown.down="event.preventDefault(); commandItemActiveNext();"
+    @keydown.up="event.preventDefault(); commandItemActivePrevious()"
+    @keydown.enter="commandItemSelected=commandItemActive;"
+    class="flex min-h-[370px] justify-center w-full max-w-xl items-start"
+    x-cloak
+>
     <div class="flex flex-col w-full h-full overflow-hidden bg-white border rounded-lg shadow-md">
         <div class="flex items-center px-3 border-b">
-            <svg class="w-4 h-4 mr-0 text-neutral-400 shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
-            <input type="text" x-ref="commandInput" x-model="commandSearch" class="flex w-full px-2 py-3 text-sm bg-transparent border-0 rounded-md outline-none focus:outline-none focus:ring-0 focus:border-0 placeholder:text-neutral-400 h-11 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Type a command or search..." autocomplete="off" autocorrect="off" spellcheck="false">
+            <svg
+                class="w-4 h-4 mr-0 text-neutral-400 shrink-0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <circle
+                    cx="11"
+                    cy="11"
+                    r="8"
+                ></circle>
+                <line
+                    x1="21"
+                    x2="16.65"
+                    y1="21"
+                    y2="16.65"
+                ></line>
+            </svg>
+            <input
+                type="text"
+                x-ref="commandInput"
+                x-model="commandSearch"
+                class="flex w-full px-2 py-3 text-sm bg-transparent border-0 rounded-md outline-none focus:outline-none focus:ring-0 focus:border-0 placeholder:text-neutral-400 h-11 disabled:cursor-not-allowed disabled:opacity-50"
+                placeholder="Type a command or search..."
+                autocomplete="off"
+                autocorrect="off"
+                spellcheck="false"
+            >
         </div>
         <div x-ref="commandItemsList" class="max-h-[320px] overflow-y-auto overflow-x-hidden">
             <template x-for="(item, index) in commandItemsFiltered" :key="'item-' + index">
@@ -150,7 +186,13 @@
                     
                     <template x-if="(item.default && commandSearchIsEmpty()) || !commandSearchIsEmpty()">
                         <div class="px-1">
-                            <div :id="item.value + '-' + commandId" @click="commandItemSelected=item" @mousemove="commandItemActive=item" :class="{ 'bg-neutral-100 text-gray-900' : commandItemIsActive(item) }" class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
+                            <div
+                                :id="item.value + '-' + commandId"
+                                @click="commandItemSelected=item"
+                                @mousemove="commandItemActive=item"
+                                :class="{ 'bg-neutral-100 text-gray-900' : commandItemIsActive(item) }"
+                                class="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+                            >
                                 <span x-html="item.icon"></span>
                                 <span x-text="item.title"></span>
                                 <template x-if="item.right">

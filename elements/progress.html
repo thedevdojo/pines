@@ -1,4 +1,5 @@
-<div x-data="{
+<div
+    x-data="{
         progress: 0,
         progressInterval: null,
     }"
@@ -10,6 +11,11 @@
             }
         }, 100);
     "
-    class="relative w-full h-3 overflow-hidden rounded-full bg-neutral-100">
-    <span :style="'width:' + progress + '%'" class="absolute w-24 h-full duration-300 ease-linear bg-neutral-900" x-cloak></span>
+    class="relative w-full h-3 overflow-hidden rounded-full bg-neutral-100"
+>
+    <span
+        :style="'width:' + progress + '%'"
+        class="absolute w-24 h-full duration-300 ease-linear bg-neutral-900"
+        x-cloak
+    ></span>
 </div>

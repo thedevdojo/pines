@@ -1,0 +1,17 @@
+{
+  "name": "pines",
+  "version": "1.0.0",
+  "description": "<img src=\"cover.jpg\" />",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint **/*.html --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@html-eslint/eslint-plugin": "^0.37.0",
+    "@html-eslint/parser": "^0.37.0",
+    "eslint": "^9.23.0"
+  }
+}
