@@ -4,13 +4,21 @@
 
 <p class="text-gray-500">Creating an Alpine Plugin is very simple and will allow you to create re-usable components. Alpine has some great documentation on <a href="https://alpinejs.dev/advanced/extending" target="_blank">extending functionality into your own plugin</a>; however, it will be beneficial to give you a specific example. 
     
-<p class="text-gray-500">Let's learn how to extract the <a href="/pines/docs/tooltip" @click="activeMenuItem = 'tooltip'; loadPage($event)" @mouseenter="fetchPage($event)">tooltip</a> element so that it can be used as a custom Alpine directive, like so:</p>
+    <p class="text-gray-500">Let's learn how to extract the <a
+            href="/pines/docs/tooltip"
+            @click="activeMenuItem = 'tooltip'; loadPage($event)"
+            @mouseenter="fetchPage($event)"
+        >tooltip</a> element so that it can be used as a custom Alpine directive, like so:</p>
 
 <pre class="block w-full overflow-scroll text-sm border rounded-md hljs"><code class="hljs html">&#x3C;div x-data x-tooltip=&#x22;Your tooltip text here&#x22;&#x3E;
     hover me
 &#x3C;/div&#x3E;</code></pre>
 
-<p class="text-gray-500">Below is the code for the <a href="/pines/docs/tooltip" @click="activeMenuItem = 'tooltip'; loadPage($event)" @mouseenter="fetchPage($event)">Alpine Tooltip Element</a>:
+    <p class="text-gray-500">Below is the code for the <a
+            href="/pines/docs/tooltip"
+            @click="activeMenuItem = 'tooltip'; loadPage($event)"
+            @mouseenter="fetchPage($event)"
+        >Alpine Tooltip Element</a>:
 
 <pre class="block w-full overflow-scroll text-sm border rounded-md hljs"><code class="hljs html">&#x3C;div 
     x-data=&#x22;{
@@ -35,12 +43,25 @@
 
 &#x3C;/div&#x3E;</code></pre>
 
-<div role="alert" class="relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-5 [&>svg+div]:translate-y-0 [&:has(svg)]:pl-11 flex items-center text-foreground">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 -translate-y-px"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
-    <div class="text-sm">First we will show you the final plugin code and then we will dissect it to show you how it works.</div>
-</div>
+        <div role="alert" class="relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-5 [&>svg+div]:translate-y-0 [&:has(svg)]:pl-11 flex items-center text-foreground">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4 -translate-y-px"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+                />
+            </svg>
+            <div class="text-sm">First we will show you the final plugin code and then we will dissect it to show you how it works.</div>
+        </div>
 
-<p class="text-gray-500">To make this tooltip functionality re-usable we could extract it into its own plugin, like so:</p>
+        <p class="text-gray-500">To make this tooltip functionality re-usable we could extract it into its own plugin, like so:</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code id="plugin-example" class="hljs html">&#x3C;script&#x3E;
     document.addEventListener('alpine:init', () => {
@@ -105,26 +126,60 @@
     &#x3C;/div&#x3E;
 &#x3C;/div&#x3E;</code></pre>
 
-<div class="text-left">
-    <button onclick="window.dispatchEvent(new CustomEvent('load-from-codeblock', { detail: { id: 'plugin-example' }}));" class="inline-flex items-center justify-center px-4 py-2.5 text-xs font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
-        <svg class="w-4 h-4 mr-2 -ml-1 -translate-y-px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="none"><path d="M10.1893 8.12241C9.48048 8.50807 9.66948 9.5633 10.4691 9.68456L13.5119 10.0862C13.7557 10.1231 13.7595 10.6536 13.7968 10.8949L14.2545 13.5486C14.377 14.3395 15.4432 14.5267 15.8333 13.8259L17.1207 11.3647C17.309 11.0046 17.702 10.7956 18.1018 10.8845C18.8753 11.1023 19.6663 11.3643 20.3456 11.4084C21.0894 11.4567 21.529 10.5994 21.0501 10.0342C20.6005 9.50359 20.0352 8.75764 19.4669 8.06623C19.2213 7.76746 19.1292 7.3633 19.2863 7.00567L20.1779 4.92643C20.4794 4.23099 19.7551 3.52167 19.0523 3.82031L17.1037 4.83372C16.7404 4.99461 16.3154 4.92545 16.0217 4.65969C15.3919 4.08975 14.6059 3.39451 14.0737 2.95304C13.5028 2.47955 12.6367 2.91341 12.6845 3.64886C12.7276 4.31093 13.0055 5.20996 13.1773 5.98734C13.2677 6.3964 13.041 6.79542 12.658 6.97364L10.1893 8.12241Z" stroke="currentColor" stroke-width="1.5"></path><path d="M12.1575 9.90759L3.19359 18.8714C2.63313 19.3991 2.61799 20.2851 3.16011 20.8317C3.70733 21.3834 4.60355 21.3694 5.13325 20.8008L13.9787 11.9552" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 6.25V3.75M3.75 5H6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18 20.25V17.75M16.75 19H19.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>
-        <span class="leading-none -translate-y-px">Open this Plugin in the Playground</span>
-    </button>
-</div>
+        <div class="text-left">
+            <button onclick="window.dispatchEvent(new CustomEvent('load-from-codeblock', { detail: { id: 'plugin-example' }}));" class="inline-flex items-center justify-center px-4 py-2.5 text-xs font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
+                <svg
+                    class="w-4 h-4 mr-2 -ml-1 -translate-y-px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <g fill="none" stroke="none">
+                        <path
+                            d="M10.1893 8.12241C9.48048 8.50807 9.66948 9.5633 10.4691 9.68456L13.5119 10.0862C13.7557 10.1231 13.7595 10.6536 13.7968 10.8949L14.2545 13.5486C14.377 14.3395 15.4432 14.5267 15.8333 13.8259L17.1207 11.3647C17.309 11.0046 17.702 10.7956 18.1018 10.8845C18.8753 11.1023 19.6663 11.3643 20.3456 11.4084C21.0894 11.4567 21.529 10.5994 21.0501 10.0342C20.6005 9.50359 20.0352 8.75764 19.4669 8.06623C19.2213 7.76746 19.1292 7.3633 19.2863 7.00567L20.1779 4.92643C20.4794 4.23099 19.7551 3.52167 19.0523 3.82031L17.1037 4.83372C16.7404 4.99461 16.3154 4.92545 16.0217 4.65969C15.3919 4.08975 14.6059 3.39451 14.0737 2.95304C13.5028 2.47955 12.6367 2.91341 12.6845 3.64886C12.7276 4.31093 13.0055 5.20996 13.1773 5.98734C13.2677 6.3964 13.041 6.79542 12.658 6.97364L10.1893 8.12241Z"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        ></path>
+                        <path
+                            d="M12.1575 9.90759L3.19359 18.8714C2.63313 19.3991 2.61799 20.2851 3.16011 20.8317C3.70733 21.3834 4.60355 21.3694 5.13325 20.8008L13.9787 11.9552"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        ></path>
+                        <path
+                            d="M5 6.25V3.75M3.75 5H6.25"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        ></path>
+                        <path
+                            d="M18 20.25V17.75M16.75 19H19.25"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        ></path>
+                    </g>
+                </svg>
+                <span class="leading-none -translate-y-px">Open this Plugin in the Playground</span>
+            </button>
+        </div>
 
-<p class="text-gray-500">Now, you will be able to use the <code>x-tooltip</code> directive anywhere you want to include a tooltip.</p>
+        <p class="text-gray-500">Now, you will be able to use the <code>x-tooltip</code> directive anywhere you want to include a tooltip.</p>
 
 
 
-<hr>
+        <hr>
 
-<h3>Understanding how to build the plugin</h3>
+        <h3>Understanding how to build the plugin</h3>
 
-<p class="text-gray-500">First, we will want to create the directive. We can do so with the following line:</p>
+        <p class="text-gray-500">First, we will want to create the directive. We can do so with the following line:</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript html">Alpine.directive('tooltip', (el, { modifiers, expression }, { cleanup }) => {</code></pre>
 
-<p class="text-gray-500">This will give us the ability to use the <code>x-tooltip</code> directive. Then, we want to define all our variables:</p>
+        <p class="text-gray-500">This will give us the ability to use the <code>x-tooltip</code> directive. Then, we want to define all our variables:</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">// The text that will be displayed in the tooltip
 let tooltipText = expression;
@@ -139,7 +194,7 @@ let positions = ['top', 'bottom', 'left', 'right'];
 // We need to check the position of the element that the tooltip is attached to, we'll use this variable in a following step
 let elementPosition = getComputedStyle(el).position;</code></pre>
 
-<p class="text-gray-500">Next we will loop through all the positions to see if the directive has any of the following modifiers `.top, .left, .bottom, .right`.</p>
+        <p class="text-gray-500">Next we will loop through all the positions to see if the directive has any of the following modifiers `.top, .left, .bottom, .right`.</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">for (let position of positions) {
     if (modifiers.includes(position)) {
@@ -148,22 +203,22 @@ let elementPosition = getComputedStyle(el).position;</code></pre>
     }
 }</code></pre>
 
-<p class="text-gray-500">This will allow modifiers to specify the position of the tooltip:</p>
+        <p class="text-gray-500">This will allow modifiers to specify the position of the tooltip:</p>
 
-<ul>
-    <li>x-tooltip.top="tooltip on the top"</li>
-    <li>x-tooltip.left="tooltip on the left"</li>
-    <li>x-tooltip.bottom="tooltip on the bottom"</li>
-    <li>x-tooltip.right="tooltip on the right"</li>
-</ul>
+        <ul>
+            <li>x-tooltip.top="tooltip on the top"</li>
+            <li>x-tooltip.left="tooltip on the left"</li>
+            <li>x-tooltip.bottom="tooltip on the bottom"</li>
+            <li>x-tooltip.right="tooltip on the right"</li>
+        </ul>
 
-<p class="text-gray-500">The reason that we stored the <strong>elementPosition</strong> above is because our tooltip has an <i class="text-black">absolute</i> value, in order for the <i class="text-black">absolute</i> position to work, the parent element position must be <i class="text-black">relative</i>, <i class="text-black">absolute</i>, or <i class="text-black">fixed</i>. If it is none of those we will set the position to <i class="text-black">relative</i>:</p>
+        <p class="text-gray-500">The reason that we stored the <strong>elementPosition</strong> above is because our tooltip has an <i class="text-black">absolute</i> value, in order for the <i class="text-black">absolute</i> position to work, the parent element position must be <i class="text-black">relative</i>, <i class="text-black">absolute</i>, or <i class="text-black">fixed</i>. If it is none of those we will set the position to <i class="text-black">relative</i>:</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">if(!['relative', 'absolute', 'fixed'].includes(elementPosition)){
     el.style.position='relative';
 }</code></pre>
 
-<p class="text-gray-500">Then, we store the HTML of our tooltip so we can append it to the element when it's hovered.</p>
+        <p class="text-gray-500">Then, we store the HTML of our tooltip so we can append it to the element when it's hovered.</p>
             
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">let tooltipHTML = `
         &#x3C;div id=&#x22;${tooltipId}&#x22; x-data=&#x22;{ tooltipVisible: false, tooltipText: &#x27;${tooltipText}&#x27;, tooltipArrow: ${tooltipArrow}, tooltipPosition: &#x27;${tooltipPosition}&#x27; }&#x22; x-ref=&#x22;tooltip&#x22; x-init=&#x22;setTimeout(function(){ tooltipVisible = true; }, 1);&#x22; x-show=&#x22;tooltipVisible&#x22; :class=&#x22;{ &#x27;top-0 left-1/2 -translate-x-1/2 -mt-0.5 -translate-y-full&#x27; : tooltipPosition == &#x27;top&#x27;, &#x27;top-1/2 -translate-y-1/2 -ml-1.5 left-0 -translate-x-full&#x27; : tooltipPosition == &#x27;left&#x27;, &#x27;bottom-0 left-1/2 -translate-x-1/2 -mb-0.5 translate-y-full&#x27; : tooltipPosition == &#x27;bottom&#x27;, &#x27;top-1/2 -translate-y-1/2 -mr-1.5 right-0 translate-x-full&#x27; : tooltipPosition == &#x27;right&#x27; }&#x22; class=&#x22;absolute w-auto text-sm&#x22; x-cloak&#x3E;
@@ -176,11 +231,11 @@ let elementPosition = getComputedStyle(el).position;</code></pre>
         &#x3C;/div&#x3E;
     `;</code></pre>
 
-<p class="text-gray-500">Next, we need to set the tooltip ID to the element's dataset so that way we can reference it later on.</p>
+        <p class="text-gray-500">Next, we need to set the tooltip ID to the element's dataset so that way we can reference it later on.</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">el.dataset.tooltip = tooltipId;</code></pre>
 
-<p class="text-gray-500">When the user hovers the element we want to append the <strong>tooltip HTML</strong>, and when their mouse leaves the element we want to remove it:</p>
+        <p class="text-gray-500">When the user hovers the element we want to append the <strong>tooltip HTML</strong>, and when their mouse leaves the element we want to remove it:</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">let mouseEnter = function(event){ 
     el.innerHTML += tooltipHTML;
@@ -193,25 +248,38 @@ let mouseLeave = function(event){
 el.addEventListener('mouseenter', mouseEnter);
 el.addEventListener('mouseleave', mouseLeave);</code></pre>
 
-<p class="text-gray-500">Finally, the last piece of code is using a helper callback function called <strong>cleanup()</strong> that is provided by AlpineJS. It will allow us to perform any cleanup functionality, such as removing event listeners, whenever the parent element is removed from the DOM:</p>
+        <p class="text-gray-500">Finally, the last piece of code is using a helper callback function called <strong>cleanup()</strong> that is provided by AlpineJS. It will allow us to perform any cleanup functionality, such as removing event listeners, whenever the parent element is removed from the DOM:</p>
 
 <pre class="block w-full mt-2 overflow-scroll text-sm border rounded-md hljs"><code class="javascript">cleanup(() => {
     el.removeEventListener('mouseenter', mouseEnter);
     el.removeEventListener('mouseleave', mouseLeave);
 })</code></pre>
 
-<p class="text-gray-500">And that's how you would go about creating a simple Alpine plugin that can be re-used throughout your application.</p>
+        <p class="text-gray-500">And that's how you would go about creating a simple Alpine plugin that can be re-used throughout your application.</p>
 
-<div role="alert" class="relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-5 [&>svg+div]:translate-y-0 [&:has(svg)]:pl-11 flex items-start text-foreground">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 -mt-px translate-y-1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
-    <div class="text-sm">Every element contains different functionality, so creating a plugin for each element will be different as well. But, hopefully this example will set you on the right path to abstracting plugins for future use.</div>
-</div>
+        <div role="alert" class="relative w-full rounded-lg border p-4 [&>svg]:absolute [&>svg]:text-foreground [&>svg]:left-4 [&>svg]:top-5 [&>svg+div]:translate-y-0 [&:has(svg)]:pl-11 flex items-start text-foreground">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4 -mt-px translate-y-1"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+                />
+            </svg>
+            <div class="text-sm">Every element contains different functionality, so creating a plugin for each element will be different as well. But, hopefully this example will set you on the right path to abstracting plugins for future use.</div>
+        </div>
 
-<hr>
+        <hr>
 
-<h3>Why not create Pines as a separate library</h3>
+        <h3>Why not create Pines as a separate library</h3>
 
-<p class="text-gray-500">We wanted to build a set of UI elements that are highly customizable and flexible. These elements will allow developers to easily integrate them with any <a href="https://tallstack.dev" target="_blank">Tallstack</a> application. If the demand is high enough, we may strongly consider converting Pines into its own external library.</p>
+        <p class="text-gray-500">We wanted to build a set of UI elements that are highly customizable and flexible. These elements will allow developers to easily integrate them with any <a href="https://tallstack.dev" target="_blank">Tallstack</a> application. If the demand is high enough, we may strongly consider converting Pines into its own external library.</p>
 
-<p class="text-gray-500">Be sure to let us know your thoughts, give us a <a href="https://github.com/thedevdojo/pines" target="_blank">Star on GitHub</a>, and consider <a href="/pines/docs/contribution" @click="activeMenuItem = 'contribution'; loadPage($event)">contributing</a> to help steer the direction of this project.</p>
+        <p class="text-gray-500">Be sure to let us know your thoughts, give us a <a href="https://github.com/thedevdojo/pines" target="_blank">Star on GitHub</a>, and consider <a href="/pines/docs/contribution" @click="activeMenuItem = 'contribution'; loadPage($event)">contributing</a> to help steer the direction of this project.</p>
 

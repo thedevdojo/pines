@@ -1,4 +1,5 @@
-<h1 x-data="{
+<h1
+    x-data="{
     startingAnimation: { opacity: 0, scale: 4 },
     endingAnimation: { opacity: 1, scale: 1, stagger: 0.07, duration: 1, ease: 'expo.out' },
     addCNDScript: true,
@@ -22,7 +23,7 @@
         document.head.appendChild(script);
     }
 }"
-x-init="
+    x-init="
     splitCharactersIntoSpans($el);
     if(addCNDScript){
         addScriptToHead('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js');
@@ -34,7 +35,7 @@ x-init="
         }
     }, 5);
 "
-class="invisible block text-3xl font-bold custom-font"
+    class="invisible block text-3xl font-bold custom-font"
 >
-Pines UI Library
+    Pines UI Library
 </h1>

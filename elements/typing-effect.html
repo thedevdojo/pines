@@ -1,4 +1,4 @@
-<div 
+<div
     x-data="{
         text: '',
         textArray : ['Alpine JS is Amazing', 'It is Truly Awesome!', 'You Have to Try It!'],
@@ -9,7 +9,7 @@
         pauseEnd: 1500,
         pauseStart: 20,
         direction: 'forward',
-    }" 
+    }"
     x-init="$nextTick(() => {
         let typingInterval = setInterval(startTyping, $data.typeSpeed);
     
@@ -63,7 +63,8 @@
         }, $data.cursorSpeed);
 
     })"
-    class="flex items-center justify-center mx-auto text-center max-w-7xl">
+    class="flex items-center justify-center mx-auto text-center max-w-7xl"
+>
     <div class="relative flex items-center justify-center h-auto">
         <p class="text-2xl font-black leading-tight" x-text="text"></p>
         <span class="absolute right-0 w-2 -mr-2 bg-black h-3/4" x-ref="cursor"></span>
